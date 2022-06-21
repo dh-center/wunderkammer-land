@@ -31,7 +31,7 @@ jobs:
           script: |
             echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u dice4x4 --password-stdin
             docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:pr-${{ github.event.pull_request.number }}
-            docker kill $(docker ps -aqf "name=${{ env.NAME }}")
+            docker rm -f ${{ env.NAME }}
             docker run -dp 8081:8080 --name ${{ env.NAME }} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:pr-${{ github.event.pull_request.number }}
             docker logout
 
