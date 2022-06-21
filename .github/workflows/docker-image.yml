@@ -3,8 +3,9 @@ name: Build Docker Image
 on:
   pull_request:
     branches: [ "main" ]
-    types: ["opened", "reopened"]
+    types: ["opened", "reopened", "synchronize"]
     tags: [ 'v*.*.*' ]
+
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
