@@ -64,6 +64,6 @@ jobs:
             echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u dice4x4 --password-stdin
             docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
             docker rm -f ${{ env.NAME }}
-            docker run -dp 8081:8080 --name ${{ env.NAME }} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+            docker run -dp 8082:8080 --name ${{ env.NAME }} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
             docker logout
 
