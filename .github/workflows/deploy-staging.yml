@@ -1,0 +1,37 @@
+name: Deploy image on merge
+
+concurrency: staging
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+env:
+  USERNAME: deploy
+  HOST: wunder-kammer.ru
+  PORT: 22
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+  NAME: wndrkmr-land
+
+jobs:
+  deploy:
+    name: Deploy staging
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ env.HOST }}
+          username: ${{ env.USERNAME }}
+          key: ${{ secrets.WNDRKMR_SSH_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u dice4x4 --password-stdin
+            docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:pr-${{ github.event.pull_request.number }}
+            docker kill $(docker ps -aqf "name=${{ env.NAME }}")
+            docker run -dp 8081:8080 --name ${{ env.NAME }} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:pr-${{ github.event.pull_request.number }}
+            docker logout
+
