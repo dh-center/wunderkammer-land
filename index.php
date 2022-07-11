@@ -38,7 +38,7 @@ include 'header_index.php';
         <transition name="slide-fade">
             <div v-if="iStart.showPoints">
                 <!--<div class="i0_point i0_point-1" @mouseover="iTriggers.iKeyHover = true" :class="{'move':iMove.movePoints}">-->
-                <div class="i0_point i0_point-1" @mouseover="iMouseOver('iKeyHover')" :class="{'move':iMove.movePoints}">
+                <div class="i0_point i0_point-1" @mouseover="iMouseOver('iKeyHover')" :class="{'move':iMove.movePoints}" @click="iTriggers.iKeyHover = false">
                     <a href="collection.php">
                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
                             <circle r='50%' cx='50%' cy='50%' />
@@ -47,7 +47,7 @@ include 'header_index.php';
                 </div>
 
                 <!--<div class="i0_point i0_point-2" @mouseover="iTriggers.iAnchorHover = true" :class="{'move':iMove.movePoints}">-->
-                <div class="i0_point i0_point-2" @mouseover="iMouseOver('iAnchorHover')" :class="{'move':iMove.movePoints}">
+                <div class="i0_point i0_point-2" @mouseover="iMouseOver('iAnchorHover')" :class="{'move':iMove.movePoints}" @click="iTriggers.iAnchorHover = false">
                     <a href="cabinet.php">
                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
                             <circle r='50%' cx='50%' cy='50%' />
@@ -55,21 +55,24 @@ include 'header_index.php';
                     </a>
                 </div>
 
-                <!--<div class="i0_point i0_point-3" @mouseover="iTriggers.iDividersHover = true" :class="{'move':iMove.movePoints}">-->
-                <div class="i0_point i0_point-3" @mouseover="iMouseOver('iDividersHover')" :class="{'move':iMove.movePoints}">
-                    <a href="map.php">
-                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
-                            <circle r='50%' cx='50%' cy='50%' />
-                        </svg>
-                    </a>
-                </div>
+                <transition name="slide-sec4">
+                    <!--<div class="i0_point i0_point-3" @mouseover="iTriggers.iDividersHover = true" :class="{'move':iMove.movePoints}">-->
+                    <div class="i0_point i0_point-3" @mouseover="iMouseOver('iDividersHover')" :class="{'move':iMove.movePoints}" v-if="!iTriggers.iDividersHover" @click="iTriggers.iDividersHover = false">
+                        <a href="map.php">
+                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+                                <circle r='50%' cx='50%' cy='50%' />
+                            </svg>
+                        </a>
+                    </div>
+                </transition>
             </div>
         </transition>
 
-        <transition name="slide-sec3">
-            <div class="i0_item i0_key" v-if="iMove.isMoveEnd && iTriggers.iKeyHover" @mouseleave="iTriggers.iKeyHover = false">
+        <!--<transition name="slide-sec3">-->
+        <transition name="fade">
+            <div class="i0_item i0_key" v-if="iMove.isMoveEnd && iTriggers.iKeyHover" @mouseleave="iTriggers.iKeyHover = false" @click="iTriggers.iKeyHover = false">
                 <a href="collection.php">
-                    <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    <!--<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                          viewBox="0 0 1065.5 338.4" style="enable-background:new 0 0 1065.5 338.4;" xml:space="preserve">
                         <path d="M61.7,209.3C13.1,192.7-5.9,146.5,1.5,108.3c8-41.5,46.5-74.7,93.4-71c23.8,1.9,43.7,12,59.4,29.9
                             c15.7,17.9,22.6,39.1,21.8,63.2c144.1-0.5,287.8,0.2,431.9-1c0-8.1,0-15.9,0-23.9c9.1,0,17.9,0,27,0c0,7.8,0,15.6,0,23.7
@@ -88,15 +91,17 @@ include 'header_index.php';
                             c0,31.4,0,63.1,0,95.4C847.7,270.7,875.5,266.8,902.2,252.7z M818.3,32.6c0,31.3,0,62.3,0,93.5c4.8-3.8,80.4-79.6,82.6-82.9
                             C874.7,30,847.5,26.1,818.3,32.6z M1025.9,132.1c-10.2,0.1-19,8.8-18.8,18.8c0.3,11.5,8.8,19.3,19.5,19.1
                             c12-0.3,18.6-10.4,18.5-19.1C1045,140.3,1036.6,132,1025.9,132.1z"/>
-                    </svg>
+                    </svg>-->
+                    <img src="images/gif/anim_key.gif?ver=<?php echo time();?>" alt="" />
                 </a>
             </div>
         </transition>
 
-        <transition name="slide-sec2">
-            <div class="i0_item i0_anchor" v-if="iMove.isMoveEnd && iTriggers.iAnchorHover" @mouseleave="iTriggers.iAnchorHover = false">
+        <!--<transition name="slide-sec2">-->
+        <transition name="fade">
+            <div class="i0_item i0_anchor" v-if="iMove.isMoveEnd && iTriggers.iAnchorHover" @mouseleave="iTriggers.iAnchorHover = false" @click="iTriggers.iAnchorHover = false">
                 <a href="cabinet.php">
-                    <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    <!--<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                          viewBox="0 0 181 687.2" style="enable-background:new 0 0 181 687.2;" xml:space="preserve">
                         <path d="M168.1,640c-7.6,0-14.2,0-21,0c-0.9-2.4-0.5-4.6-0.4-7.3c11.5-0.2,22.8,0.3,34.3,0.3c0,11.7,0,23.1,0,34.1
                             c-1.7,1.1-2.8,0.8-4,0.7c-1,0-2,0.1-3.2-0.8c-0.7-6.9,0.4-14,0.3-21.4c-2.3,0.6-3.2,2.5-4.3,3.9c-5.8,7.2-12.5,13.4-20,18.7
@@ -108,8 +113,6 @@ include 'header_index.php';
                             c0,0.8-0.1,1.7,0.7,2.6c4.2,0.7,8.7,0.3,13.2,0.4c4.5,0.1,9,0,13.4,0c1.4,2.4,0.5,4.5,1,7.2c-9.5,0.2-18.6-0.1-28.2,0.1
                             c0,53.3,0,106.3,0,159.8C125.5,677.8,149.3,664.6,168.1,640z M106.7,468.7c0.1-8.7-6.9-15.7-15.4-15.6c-8.4,0.1-15.1,6.9-15.2,15.3
                             c-0.1,8.6,6.9,15.7,15.4,15.6C99.8,483.9,106.6,477.1,106.7,468.7z"/>
-                        <!--<path d="M114.6,22c0.2,13.4-10.9,21.8-21.7,21.9c-12.1,0.1-22.4-10.2-22.2-22.2C70.9,9.8,80.9-0.1,92.9,0
-        C104.9,0.1,114.6,9.9,114.6,22z"/>-->
                         <path d="M91.7,70.2c1.6,0,3,1.5,2.9,3.3c-0.1,1.8-1.1,2.7-2.7,2.9c-1.5,0.2-3.2-1.5-3.3-3C88.5,71.9,90.1,70.3,91.7,70.2z"/>
                         <path d="M94.6,136.6c-0.1,1.7-1.6,3.1-3.2,3c-1.6-0.2-3.1-1.9-2.8-3.4c0.3-1.6,1.3-2.6,3-2.7C93.2,133.3,94.6,134.9,94.6,136.6z"/>
                         <path d="M91.8,234.5c1.6,0.1,2.9,1.6,2.8,3.4c-0.1,1.8-1.3,2.6-2.8,2.8c-1.4,0.2-3.2-1.6-3.2-3.1C88.5,236,90.2,234.4,91.8,234.5z"
@@ -147,15 +150,16 @@ include 'header_index.php';
                         <path d="M91.4,228c-1.6-0.1-3.1-1.9-2.8-3.5c0.4-1.6,1.4-2.6,3.2-2.5c1.8,0.1,3,1.6,2.7,3.4C94.3,227,93,228.1,91.4,228z"/>
                         <path d="M94.5,427c0,1.7-0.9,2.8-2.6,3.1c-1.6,0.2-3.3-1.3-3.3-3c-0.1-1.7,1.5-3.2,3.2-3C93.6,424.1,94.4,425.2,94.5,427z"/>
                         <path d="M94.5,326c-0.1,1.7-1,2.8-2.7,3c-1.6,0.2-3.3-1.4-3.3-3.1c0-1.7,1.5-3.2,3.3-3C93.6,323.1,94.5,324.2,94.5,326z"/>
-                    </svg>
+                    </svg>-->
+                    <img src="images/gif/anim_anchor.gif?ver=<?php echo time();?>" alt="" />
                 </a>
             </div>
         </transition>
 
         <transition name="slide-sec4">
-            <div class="i0_item i0_dividers" v-if="iMove.isMoveEnd && iTriggers.iDividersHover" @mouseleave="iTriggers.iDividersHover = false">
+            <div class="i0_item i0_dividers" v-if="iMove.isMoveEnd && iTriggers.iDividersHover" @mouseleave="iTriggers.iDividersHover = false" @click="iTriggers.iDividersHover = false">
                 <a href="map.php">
-                    <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    <!--<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                          viewBox="0 0 929 627.5" style="enable-background:new 0 0 929 627.5;" xml:space="preserve">
                         <g>
                             <path d="M78.9,413.4c5.4-2.8,7.6-2.9,10-0.7c2,1.8,2.5,4.4,1.5,6.8c-1.2,2.7-4.1,4.5-6.8,4c-3.9-0.8-5.3-3.6-5.6-7.9
@@ -308,7 +312,8 @@ include 'header_index.php';
                             <path style="fill:#FFFFFF;" d="M257.4,53.5c0,5.4-4.3,9.9-9.6,10c-5.4,0.2-10.2-4.6-10.3-10c0-5.5,4.7-10,10.3-9.9
                                 C253.2,43.7,257.4,48,257.4,53.5z"/>
                         </g>
-                    </svg>
+                    </svg>-->
+                    <img src="images/gif/anim_dividers.gif?ver=<?php echo time();?>" alt="" />
                 </a>
             </div>
         </transition>

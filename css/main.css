@@ -92,7 +92,7 @@ html {
 	height: 100%;
 	font-family:'HelveticaNeueCyr-Medium', Arial, sans-serif;
 	font-size: 24px;
-	#line-height: 26px;
+
 	line-height: 1.2;
 	color: #000;
 	background-color: #fff;
@@ -106,12 +106,12 @@ body,html {
 }
 
 body {
-	#min-height: 100vh;
+
 }
 	
 	@media (max-width:999px){
 		body{
-			#overflow: visible !important;
+		
 		}
 	}
 	
@@ -152,8 +152,8 @@ a, a:visited{
 
 .noscript_message{
 	display: block;
-	#position: fixed;
-	#top: 0;
+
+
 	background-color: rgba(0,0,0,.9);
 	margin-left: auto;
 	margin-right: auto;
@@ -162,7 +162,7 @@ a, a:visited{
 	text-align: center;
 	padding: 5px 0 5px 0;
 	color: #ff0000;
-	#animation: blinkingNoScriptMessage 1s 5;
+
 }
 
 .flex{

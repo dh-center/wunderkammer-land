@@ -7,7 +7,7 @@ include 'header.php';
 
     <div class="main_section left desktop-only">
         <div class="section_logo">
-            <a href="index">
+            <a href="index2.php">
                 <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                      viewBox="0 0 423.6 424" style="enable-background:new 0 0 423.6 424;" xml:space="preserve">
                     <g>
