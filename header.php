@@ -114,6 +114,9 @@
           href="css/swiper.css?ver=<?php echo filemtime(__DIR__ . '/css/swiper.css'); ?>"/>
 
     <link rel="prefetch prerender" href="images/petr.png" />
+    <link rel="prefetch prerender" href="images/gif/anim_anchor.gif" />
+    <link rel="prefetch prerender" href="images/gif/anim_dividers.gif" />
+    <link rel="prefetch prerender" href="images/gif/anim_key.gif" />
 
     <!-- Yandex.Metrika counter -->
     <!-- /Yandex.Metrika counter -->
@@ -253,7 +256,7 @@
                                 </li>
                             </a>
 
-                            <a href="" class="menu_block_contaner menu_about_contaner">
+                            <a href="about.php" class="menu_block_contaner menu_about_contaner">
                                 <div class="menu-bullet menu-bullet_about">
                                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
                                         <circle r='50%' cx='50%' cy='50%' fill='#ff0000' stroke='#ff0000' stroke-width='0' />
@@ -264,7 +267,7 @@
                                 </li>
                             </a>
 
-                            <a href="" class="menu_block_contaner menu_team_contaner">
+                            <a href="team.php" class="menu_block_contaner menu_team_contaner">
                                 <div class="menu-bullet menu-bullet_team">
                                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
                                         <circle r='50%' cx='50%' cy='50%' fill='#ff0000' stroke='#ff0000' stroke-width='0' />
