@@ -36,7 +36,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue-awesome-swiper@4.1.1/dist/vue-awesome-swiper.js"></script>
 
 
-<?php // Prmises ?>
+<?php // Promises ?>
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8.2.3/dist/polyfill.js"></script>
 
 

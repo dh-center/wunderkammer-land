@@ -68,13 +68,18 @@ new Vue({
 
                 setTimeout(function () {
                     //vm.mainShow = true
-                    vm.iStart.showPetr = vm.iMove.movePoints = true
-                }, 7500)
+                    vm.iStart.showPetr = true
+                }, 8500)
+
+                setTimeout(function () {
+                    //vm.mainShow = true
+                    vm.iMove.movePoints = true
+                }, 9500)
 
                 setTimeout(function () {
                     //vm.mainShow = true
                     vm.iMove.isMoveEnd = true
-                }, 8500)
+                }, 10500)
             });
         /*}*/
     },

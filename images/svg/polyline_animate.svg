@@ -42,7 +42,7 @@
         />
         <animate
         id='two'
-        begin='one.end + 1s'
+        begin='one.end + 3s'
         attributeName='points'
         dur='1s'
         fill="freeze"
