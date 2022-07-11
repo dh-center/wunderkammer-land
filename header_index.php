@@ -113,6 +113,13 @@
     <link rel="stylesheet"
           href="css/swiper.css?ver=<?php echo filemtime(__DIR__ . '/css/swiper.css'); ?>"/>
 
+    <link rel="prefetch prerender" href="js/app.js" />
+    <link rel="prefetch prerender" href="images/svg/polyline_animate.svg" />
+    <link rel="prefetch prerender" href="images/petr.png" />
+    <link rel="prefetch prerender" href="images/gif/anim_anchor.gif" />
+    <link rel="prefetch prerender" href="images/gif/anim_dividers.gif" />
+    <link rel="prefetch prerender" href="images/gif/anim_key.gif" />
+
 
     <!-- Yandex.Metrika counter -->
     <!-- /Yandex.Metrika counter -->
