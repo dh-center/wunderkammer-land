@@ -10,7 +10,7 @@ const Menu = () => {
   useEffect(() => setIsNavbarOpen(false), [location]);
 
   return (
-    <nav className={`navbar ${isNavbarOpen && "navbar--open"}`}>
+    <nav className={`navbar ${isNavbarOpen ? "navbar--open" : ""}`}>
       <div className="navbar_logo_wrapper mobile-only flex column content--center">
         <Link to="/">
           <div className="navbar_logo_container flex row content--start items--center">
@@ -40,10 +40,10 @@ const Menu = () => {
       </div>
 
       <div
-        className={`menu-toggler_container ${isNavbarOpen && "navbar--open"}`}
+        className={`menu-toggler_container ${isNavbarOpen ? "navbar--open" : ""}`}
         onClick={() => setIsNavbarOpen((prev) => !prev)}
       >
-        <div className={`toggler_bullet ${isNavbarOpen && "navbar--open"}`}>
+        <div className={`toggler_bullet ${isNavbarOpen ? "navbar--open" : ""}`}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
             <circle r="7" cx="50" cy="26" fill="#ffffff" stroke="#0000ff" strokeWidth="0"></circle>
             <circle r="7" cx="50" cy="50" fill="#ffffff" stroke="#0000ff" strokeWidth="0"></circle>
@@ -54,7 +54,7 @@ const Menu = () => {
 
       <div
         className={`menu flex column content--space-between mobile-content--start items--start ${
-          isNavbarOpen && "navbar--open"
+          isNavbarOpen ? "navbar--open" : ""
         }`}
       >
         <div className="menu_container menu-top_container">
@@ -84,15 +84,15 @@ const Menu = () => {
                 setIsMenuCabinetOpen((prev) => !prev);
               }}
             >
-              <div className={`menu-bullet menu-bullet_cabinet ${isMenuCabinetOpen && isNavbarOpen && "cabinet--open"}`}>
+              <div className={`menu-bullet menu-bullet_cabinet ${isMenuCabinetOpen && isNavbarOpen ? "cabinet--open" : ""}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
                   <circle r="50%" cx="50%" cy="50%" fill="#0000ff" stroke="#0000ff" strokeWidth="0"></circle>
                 </svg>
               </div>
-              <li className={`menu_cabinet ${isMenuCabinetOpen && "cabinet--open"}`}>Кабинет</li>
+              <li className={`menu_cabinet ${isMenuCabinetOpen ? "cabinet--open" : ""}`}>Кабинет</li>
             </button>
 
-            <ul className={`submenu submenu-cabinet hidden ${isMenuCabinetOpen && "transition-active"}`}>
+            <ul className={`submenu submenu-cabinet hidden ${isMenuCabinetOpen ? "fade_show" : ""}`}>
               <li>
                 <Link to="/articles">Статьи</Link>
               </li>

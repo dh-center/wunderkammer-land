@@ -1474,13 +1474,28 @@ p.team_person{
 }
 
 .hidden {
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
+    display: none;
 }
 
-.transition-active {
-    opacity: 1;
-    visibility: visible;
-    transition: 0.3s ease;
+.fade_show {
+    display: block;
+    animation: showBlock 0.5s linear forwards;
+}
+
+@keyframes showBlock {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+}
+
+@keyframes hideBlock {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
 }
