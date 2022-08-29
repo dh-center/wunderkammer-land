@@ -1,16 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Farfor from '../assets/images/articles_farfor.jpg';
 import Grafin from '../assets/images/articles_grafin.jpg';
 import Ikona from '../assets/images/articles_ikona.jpg';
 import Petr from '../assets/images/articles_petr.jpg';
 
-const Articles = ({ title }) => {
+const Articles = () => {
     const [imageUrl, setImageUrl] = useState(null);
-
-    useEffect(() => {
-        document.title = title;
-    }, [title]);
 
     return (
         <main className="layout_main flex row mobile--column content--space-between mobile-content--start items--start">

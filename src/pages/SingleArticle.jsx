@@ -1,11 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Petr from '../assets/images/articles_petr.jpg';
 
-const SingleArticle = ({ title }) => {
-    useEffect(() => {
-        document.title = title;
-    }, [title]);
+const SingleArticle = () => {
     return (
         <main className="layout_main single-article flex row mobile--column content--start items--start">
             <div className="main_section left desktop-only">

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Menu = ({ isNavbarOpen, setIsNavbarOpen, isMenuCabinetOpen, setIsMenuCabinetOpen }) => {
+const Menu = () => {
+    const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+    const [isMenuCabinetOpen, setIsMenuCabinetOpen] = useState(false);
     return (
         <nav className={`navbar ${isNavbarOpen && 'navbar--open'}`}>
             <div className="navbar_logo_wrapper mobile-only flex column content--center">
