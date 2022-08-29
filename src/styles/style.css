@@ -438,7 +438,7 @@ body{
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url(../assets/images/petr.png);
+    background-image: url('../assets/images/petr.png');
 }
 @media screen and (max-width: 980px) {
     .i_portrait{

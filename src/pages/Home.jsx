@@ -71,7 +71,13 @@ const Home = () => {
         window.addEventListener("load", onLoadHandler);
       }
     } else {
-      setPassedAnimationSteps({ showPointsMob: true, showTitle: true, showPetr: true, showPoints: true, showPetrMob: true });
+      setPassedAnimationSteps((prevState) => ({
+        showPointsMob: true,
+        showTitle: true,
+        showPetr: true,
+        showPoints: true,
+        showPetrMob: true
+      }));
       setMove(() => ({ isEnded: true, isPointsAnimating: true }));
     }
     return () => {
