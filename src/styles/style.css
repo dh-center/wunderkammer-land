@@ -802,6 +802,17 @@ body{
     opacity: 1;
 }
 
+.menu_cabinet_contaner {
+    background:  none;
+    margin: 0;
+    padding: 0;
+    color: inherit
+}
+
+.menu_cabinet_contaner:hover {
+    color: white
+}
+
 .menu_cabinet_contaner:hover .menu-bullet_cabinet, .menu-bullet_cabinet.cabinet--open{
     visibility: visible;
     opacity: 1;
