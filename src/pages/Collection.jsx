@@ -171,7 +171,7 @@ const Collection = () => {
           музейные предметы, памятники, города, легенды, утраченное и любое другое наследие петровской эпохи.
         </div>
         <div className="section_footer">
-          <Link className="section_footer_more" to="#">
+          <Link className="section_footer_more" to="/collection_detailed">
             подробнее
           </Link>
         </div>

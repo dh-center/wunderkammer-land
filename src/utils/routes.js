@@ -6,6 +6,7 @@ import SingleArticle from '../pages/SingleArticle';
 import About from '../pages/About';
 import Map from '../pages/Map';
 import Team from '../pages/Team';
+import CollectionDetailed from '../pages/CollectionDetailed';
 
 const routes = [
     {
@@ -49,8 +50,14 @@ const routes = [
         pageTitle: 'Команда | Wunderkammer',
     },
     {
+        path: 'collection_detailed',
+        renderElement: () => <CollectionDetailed />,
+        pageTitle: 'Коллекция | Wunderkammer',
+    },
+    {
         path: '*',
         renderElement: () => <>404</>,
+        pageTitle: 'Страница не найдена',
     },
 ];
 
