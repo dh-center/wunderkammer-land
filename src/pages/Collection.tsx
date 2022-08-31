@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { COLLECTION_LIST_URL } from "../utils/urls";
 
 const Collection: React.FC = () => {
   return (
@@ -171,8 +172,8 @@ const Collection: React.FC = () => {
           музейные предметы, памятники, города, легенды, утраченное и любое другое наследие петровской эпохи.
         </div>
         <div className="section_footer">
-          <Link className="section_footer_more" to="/collection_detailed">
-            подробнее
+          <Link className="section_footer_more" to={COLLECTION_LIST_URL}>
+            перейти к коллекции
           </Link>
         </div>
       </div>
