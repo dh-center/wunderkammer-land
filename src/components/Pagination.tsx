@@ -1,7 +1,13 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
+import { HandlePageClickType } from "../pages/CollectionDetailed";
 
-const Pagination = ({ handlePageClick, pageCount, currentPage }) => {
+type PaginationProps = {
+  handlePageClick: (event: HandlePageClickType) => void,
+  pageCount: number,
+}
+
+const Pagination: React.FC<PaginationProps> = ({ handlePageClick, pageCount }) => {
   return (
     <ReactPaginate
       className="pagination__root"

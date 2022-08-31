@@ -1,6 +1,11 @@
 import { useEffect } from 'react';
 
-const TitledPage = ({ title, children }) => {
+type TitlePageProps = {
+    title: string,
+    children: JSX.Element,
+}
+
+const TitledPage: React.FC<TitlePageProps> = ({ title, children }) => {
     useEffect(() => {
         document.title = title;
     }, [title]);

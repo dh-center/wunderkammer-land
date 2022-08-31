@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Team = () => {
+const Team: React.FC = () => {
   return (
     <main className="layout_main flex row mobile--column content--space-between mobile-content--start items--start">
       <div className="main_section left about desktop-only flex column content--space-between items--start">
