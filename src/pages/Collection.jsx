@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { COLLECTION_LIST_URL } from "../utils/urls";
 
 const Collection = () => {
   return (
@@ -7,7 +8,14 @@ const Collection = () => {
       <div className="main_section left desktop-only">
         <div className="section_logo">
           <Link to="/">
-            <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1496.1 211.1">
+            <svg
+              version="1.1"
+              id="Слой_1"
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              viewBox="0 0 1496.1 211.1"
+            >
               <path
                 d="M64.9,135.7c-4.7-2.1-8.7-2.1-12.8,0.4c-14.4-25-28.6-49.6-42.8-74C23.9,27.8,62.3-1.2,108.5,0
                         c39.8,1.1,76.9,26.4,91.9,60.1c-14.4,25-29,50.2-43.6,75.5c-4.3-1.7-8.4-2.3-12.2-0.1c-2.9-2.9-26.7-43.3-33.6-57
@@ -115,7 +123,14 @@ const Collection = () => {
             <div className="key_chain key_chain_2"></div>
           </div>
           <div className="key_container">
-            <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 203.9 671.4">
+            <svg
+              version="1.1"
+              id="Слой_1"
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              viewBox="0 0 203.9 671.4"
+            >
               <path
                 d="M96.1,637.2c-32.4,10.6-63.9,21-96,31.5c-0.2-7.2-0.1-13.9-0.1-20.8c21.1-6.4,41.9-12.6,63.3-19.1
                         c-5.3-2.8-10.6-3.9-15.7-5.6c-5.3-1.8-10.7-3.4-16.1-5.2c-5.2-1.7-10.4-3.4-15.6-5.1c-5.2-1.7-10.4-3.3-15.7-5c0-5,0-9.8,0-15.2
@@ -143,7 +158,14 @@ const Collection = () => {
         <div className="section_title_container flex row content--space-between items--start">
           <h1 className="section_title">Коллекция</h1>
           <div className="anchor_container_mobile key anchor mobile-only">
-            <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 203.9 671.4">
+            <svg
+              version="1.1"
+              id="Слой_1"
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              viewBox="0 0 203.9 671.4"
+            >
               <path
                 d="M96.1,637.2c-32.4,10.6-63.9,21-96,31.5c-0.2-7.2-0.1-13.9-0.1-20.8c21.1-6.4,41.9-12.6,63.3-19.1
                     c-5.3-2.8-10.6-3.9-15.7-5.6c-5.3-1.8-10.7-3.4-16.1-5.2c-5.2-1.7-10.4-3.4-15.6-5.1c-5.2-1.7-10.4-3.3-15.7-5c0-5,0-9.8,0-15.2
@@ -166,13 +188,15 @@ const Collection = () => {
           </div>
         </div>
         <div className="section_content">
-          Ассамблея петровских музеев России объединяет свыше 110 культурных институций, каждая из которых бережно хранит память
-          о Петре Великом. С помощью платформы «Сорока» мы хотим создать цифровую коллекцию первого русского императора:
-          музейные предметы, памятники, города, легенды, утраченное и любое другое наследие петровской эпохи.
+          Ассамблея петровских музеев России объединяет свыше 110 культурных
+          институций, каждая из которых бережно хранит память о Петре Великом. С
+          помощью платформы «Сорока» мы хотим создать цифровую коллекцию первого
+          русского императора: музейные предметы, памятники, города, легенды,
+          утраченное и любое другое наследие петровской эпохи.
         </div>
         <div className="section_footer">
-          <Link className="section_footer_more" to="/collection_detailed">
-            подробнее
+          <Link className="section_footer_more" to={COLLECTION_LIST_URL}>
+            перейти к коллекции
           </Link>
         </div>
       </div>

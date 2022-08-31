@@ -1520,13 +1520,6 @@ p.team_person{
     outline: none;
 }
 
-.collection-detailed__search-button {
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer
-}
-
 .collection-detailed__card-list {
     list-style: none;
     padding: 2rem 0;
