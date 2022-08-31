@@ -1499,3 +1499,91 @@ p.team_person{
       opacity: 0;
     }
 }
+
+/* Collection detailed ↓ */
+
+.collection-detailed__wrap {
+    margin: 1rem;
+}
+
+.collection-detailed__search {
+    border: 1px solid black;
+    display: inline-flex;
+}
+
+.collection-detailed__search-input {
+    font-size: 1rem;
+    padding: 0.3rem;
+    font-size: 0.8rem;
+    width: 15rem;
+    border: none;
+    outline: none;
+}
+
+.collection-detailed__card-list {
+    list-style: none;
+    padding: 2rem 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 90%;
+}
+
+.collection-detailed__card-item {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 1px solid gray;
+}
+
+.collection-detailed__properties-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.collection-detailed__properties-list-item {
+    margin-bottom: 0.5rem;
+}
+
+/* Collection detailed ↑ */
+
+
+.pagination__root {
+    display: inline-flex;
+    flex-direction: row;
+    column-gap: 1rem;
+    margin-top: 3rem;
+    align-items: center;
+    list-style: none;
+}
+
+.pagination__root li {
+    display: inline-flex;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid gray;
+    border-radius: 5%;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.pagination__root li.selected {
+    background-color: gray;
+}
+
+.pagination__root li a {
+    color: black; 
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    line-height: 34px;
+    user-select: none; 
+}
+
+.pagination__root li:hover {
+    background-color: gray;
+    transition: 0.3s ease;
+}
