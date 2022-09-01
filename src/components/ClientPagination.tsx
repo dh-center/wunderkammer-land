@@ -1,8 +1,19 @@
 import React, { useEffect, useMemo, useState } from "react";
 import ReactPaginate from "react-paginate";
+import { cardType } from "../containers/CollectionViewerContainer";
 
-const ClientPagination = ({ items, render, pageSize }) => {
-  const [currentPage, setCurrentPage] = useState(0);
+type handlePageClickType = {
+  selected: number;
+};
+
+interface ClientPaginationProps {
+  pageSize: number;
+  items: cardType[];
+  render: (paginated: cardType[]) => React.ReactElement;
+}
+
+const ClientPagination: React.FC<ClientPaginationProps> = ({ items, render, pageSize }) => {
+  const [currentPage, setCurrentPage] = useState<number>(0);
 
   const pageCount = Math.ceil(items.length / pageSize);
 
@@ -15,7 +26,7 @@ const ClientPagination = ({ items, render, pageSize }) => {
   // drop page on items change
   useEffect(() => setCurrentPage(0), [items]);
 
-  const handlePageClick = (event) => {
+  const handlePageClick = (event: handlePageClickType) => {
     setCurrentPage(event.selected);
   };
 
@@ -27,7 +38,7 @@ const ClientPagination = ({ items, render, pageSize }) => {
         nextLabel=">"
         breakLabel="..."
         previousLabel="<"
-        renderOnZeroPageCount={null}
+        renderOnZeroPageCount={() => null}
         pageRangeDisplayed={5}
         pageCount={pageCount}
         forcePage={currentPage}
