@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CardsAPI } from "../api/cards";
 import CollectionViewer from "../components/CollectionViewer";
 
-type propertyTypeListItemType = {
+type Property = {
   propertyId: number;
   name: string;
   isLink: boolean;
@@ -11,32 +11,33 @@ type propertyTypeListItemType = {
   };
 };
 
-export type cardPropertyType = {
+type CardProperty = {
   id: number;
   data: string;
   propertyId: number;
   propertyName?: string;
 };
 
-export type cardType = {
+export type CardData = {
   id: number;
   isFilled: true;
   name: string;
   organizationId: number;
   preventDefault: boolean;
   userId: number;
-  propertiesList: cardPropertyType[];
+  propertiesList: CardProperty[];
   createdAt: string;
   updateAt: string;
 };
 
-const CollectionViewerContainer: React.FC = () => {
-  const [cardsList, setCardsList] = useState<cardType[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+const CollectionViewerContainer = () => {
+  const [cardsList, setCardsList] = useState<CardData[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    CardsAPI.getCardsProperties().then((propertiesList: propertyTypeListItemType[]) =>
-      CardsAPI.getCardsByFirstOrganization().then((cardsList: cardType[]) => {
+    CardsAPI.getCardsProperties().then((propertiesList: Property[]) =>
+      CardsAPI.getCardsByFirstOrganization().then((cardsList: CardData[]) => {
+        // filling CardData properties names from all properties list array
         const patched = cardsList.map((card) => ({
           ...card,
           propertiesList: card.propertiesList.map((cardProperty) => ({

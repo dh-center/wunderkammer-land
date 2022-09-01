@@ -1,22 +1,22 @@
-import React, { useMemo, useState } from "react";
-import { cardPropertyType, cardType } from "../containers/CollectionViewerContainer";
-import ClientPagination from "./ClientPagination";
+import { useMemo, useState } from "react";
+import { CardData } from "../containers/CollectionViewerContainer";
+import usePagination from "../hooks/usePagination";
 
-const PAGE_SIZE: number = 10;
+const PAGE_SIZE = 10;
 
-interface CardItemProps {
+type CardItemProps = {
   id: number;
   name: string;
-  propertiesList: cardPropertyType[];
-}
+  propertiesList: CardData["propertiesList"];
+};
 
-interface ColleactionViewerProps {
-  cards: cardType[];
+type Props = {
+  cards: CardData[];
   isLoading: boolean;
-}
+};
 
 const simpleSearch = (str: string, lowerCaseSearch: string) => str.toLowerCase().indexOf(lowerCaseSearch) !== -1;
-const CardItem: React.FC<CardItemProps> = ({ id, name, propertiesList }) => (
+const CardItem = ({ id, name, propertiesList }: CardItemProps) => (
   <li key={id} className="collection-detailed__card-item">
     <h3>{name}</h3>
     <ul className="collection-detailed__properties-list">
@@ -27,8 +27,8 @@ const CardItem: React.FC<CardItemProps> = ({ id, name, propertiesList }) => (
   </li>
 );
 
-const CollectionViewer: React.FC<ColleactionViewerProps> = ({ cards, isLoading }) => {
-  const [searchValue, setSearchValue] = useState<string>("");
+const CollectionViewer = ({ cards, isLoading }: Props) => {
+  const [searchValue, setSearchValue] = useState("");
 
   const filtered = useMemo(
     () =>
@@ -38,6 +38,8 @@ const CollectionViewer: React.FC<ColleactionViewerProps> = ({ cards, isLoading }
       ),
     [cards, searchValue]
   );
+
+  const { page, pagination } = usePagination(filtered, PAGE_SIZE);
 
   return (
     <section className="collection-detailed__wrap">
@@ -55,19 +57,14 @@ const CollectionViewer: React.FC<ColleactionViewerProps> = ({ cards, isLoading }
       {isLoading ? (
         <p>Загрузка...</p>
       ) : (
-        <ClientPagination
-          pageSize={PAGE_SIZE}
-          items={filtered}
-          render={(paginated: cardType[]) => {
-            return (
-              <ul className="collection-detailed__card-list">
-                {paginated.map(({ id, name, propertiesList }) => (
-                  <CardItem key={id} id={id} name={name} propertiesList={propertiesList} />
-                ))}
-              </ul>
-            );
-          }}
-        />
+        <>
+          <ul className="collection-detailed__card-list">
+            {page.map(({ id, name, propertiesList }) => (
+              <CardItem key={id} id={id} name={name} propertiesList={propertiesList} />
+            ))}
+          </ul>
+          {pagination}
+        </>
       )}
     </section>
   );
