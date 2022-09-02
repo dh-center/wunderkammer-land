@@ -1595,3 +1595,8 @@ p.team_person{
     background-color: gray;
     transition: 0.3s ease;
 }
+
+.ynmap__wrap {
+    width: 100%;
+    height: 100vh;
+}
