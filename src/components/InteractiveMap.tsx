@@ -1,3 +1,4 @@
+import { CardData } from "../api/cards";
 import { LOCATION_PROPERTY_ID } from "../containers/InteractiveMapContainer";
 
 import MapComponent from "./MapComponent";
@@ -6,21 +7,30 @@ const ANNOTATION_PROPERTY_ID = 5;
 const DEFAULT_MAP_STATE_COORDINATES = [59.939099, 30.315877]; // Coordinates of St. Petersburg
 const DEFAULT_MAP_ZOOM = 5;
 
-const InteractiveMap = ({ cardsData }) => {
-  const getCoordinatesFromCardData = (card) => {
+type InteractiveMapProps = {
+  cardsData: CardData[];
+};
+
+const InteractiveMap = ({ cardsData }: InteractiveMapProps) => {
+  const getCoordinatesFromCardData = (card: CardData) => {
     if (card?.propertiesList) {
-      return JSON.parse(card.propertiesList.find((item) => item.propertyId === LOCATION_PROPERTY_ID).data)[0].location
-        .coordinates;
+      const locationProperty = card.propertiesList.find((item) => item.propertyId === LOCATION_PROPERTY_ID);
+      if (locationProperty) {
+        return JSON.parse(locationProperty.data)[0].location.coordinates;
+      }
     }
   };
 
-  const getAnnotationFromCardData = (card) => {
+  const getAnnotationFromCardData = (card: CardData) => {
     if (card?.propertiesList) {
-      return JSON.parse(card.propertiesList.find((item) => item.propertyId === ANNOTATION_PROPERTY_ID).data);
+      const annotationProperty = card.propertiesList.find((item) => item.propertyId === ANNOTATION_PROPERTY_ID);
+      if (annotationProperty) {
+        return JSON.parse(annotationProperty.data);
+      }
     }
   };
 
-  const getPointData = (pointItem) => {
+  const getPointData = (pointItem: CardData) => {
     return {
       balloonContentHeader: pointItem.name,
       balloonContentBody: getAnnotationFromCardData(pointItem),

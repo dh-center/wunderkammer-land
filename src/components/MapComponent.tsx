@@ -1,4 +1,21 @@
 import { YMaps, Map, Clusterer, Placemark } from "@pbe/react-yandex-maps";
+import { CardData } from "../api/cards";
+
+type MapProps = {
+  data: any[];
+  className: string;
+  defaultState: {
+    center: number[];
+    zoom: number;
+    controls?: string[];
+  };
+  mapModules: string[];
+  clustererOptions: object;
+  placemarkOptions: object;
+  placemarkProperties: (data: CardData) => object;
+  placemarkGeometry: (data: CardData) => number[];
+  placemarkModules: string[];
+};
 
 const MapComponent = ({
   data,
@@ -10,7 +27,7 @@ const MapComponent = ({
   placemarkProperties,
   placemarkGeometry,
   placemarkModules
-}) => {
+}: MapProps) => {
   return (
     <YMaps>
       <div>
