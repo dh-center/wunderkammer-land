@@ -1,33 +1,28 @@
-import React from "react";
+import { YMaps, Map, Clusterer, Placemark } from "@pbe/react-yandex-maps";
 
-import { YMaps, Map, Clusterer, Placemark } from "react-yandex-maps";
-
-const MapComponent = ({ cardsData, getPointOptions, getPointData }) => {
+const MapComponent = ({
+  data,
+  className,
+  defaultState,
+  mapModules,
+  clustererOptions,
+  placemarkOptions,
+  placemarkProperties,
+  placemarkGeometry,
+  placemarkModules
+}) => {
   return (
     <YMaps>
       <div>
-        <Map
-          defaultState={{ center: [59.939099, 30.315877], zoom: 5 }}
-          className="ynmap__wrap"
-          modules={["clusterer.addon.balloon"]}
-        >
-          <Clusterer
-            options={{
-              preset: "islands#invertedVioletClusterIcons",
-              groupByCoordinates: false,
-              clusterDisableClickZoom: true,
-              clusterHideIconOnBalloonOpen: false,
-              geoObjectHideIconOnBalloonOpen: false,
-              showInAlphabeticalOrder: true
-            }}
-          >
-            {cardsData.map((card) => (
+        <Map defaultState={defaultState} className={className} modules={mapModules}>
+          <Clusterer options={clustererOptions}>
+            {data.map((item) => (
               <Placemark
-                key={card.id}
-                geometry={JSON.parse(card.propertiesList.find((item) => item.propertyId === 9).data)[0].location.coordinates}
-                properties={getPointData(card.name, JSON.parse(card.propertiesList.find((item) => item.propertyId === 5).data))}
-                options={getPointOptions()}
-                modules={["geoObject.addon.balloon", "geoObject.addon.hint"]}
+                key={item.id}
+                geometry={placemarkGeometry(item)}
+                properties={placemarkProperties(item)}
+                options={placemarkOptions}
+                modules={placemarkModules}
               />
             ))}
           </Clusterer>

@@ -1,5 +1,5 @@
 import React from "react";
-import MapComponent from "../containers/MapComponentContainer";
+import InteractiveMapContainer from "../containers/InteractiveMapContainer";
 
-const InteractiveMap = () => <MapComponent />;
+const InteractiveMap = () => <InteractiveMapContainer />;
 export default InteractiveMap;
