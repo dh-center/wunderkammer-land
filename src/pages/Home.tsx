@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PolylineAnimate from "../assets/images/svg/polyline_animate.svg";
 import AnimKey from "../assets/images/gif/anim_key.gif";
@@ -10,19 +10,40 @@ const KeyHover = "keyHover";
 const AnchorHover = "anchorHover";
 const DividersHover = "dividersHover";
 
+type Triggers = {
+  keyHover: boolean;
+  anchorHover: boolean;
+  dividersHover: boolean;
+};
+
+type Move = {
+  isPointsAnimating: boolean;
+  isEnded: boolean;
+};
+
+type PassedAnimationSteps = {
+  showPoints: boolean;
+  showTitle: boolean;
+  showPetr: boolean;
+  showPetrMob: boolean;
+  showPointsMob: boolean;
+};
+
+type TimeoutIdType = undefined | ReturnType<typeof setTimeout>;
+
 const Home = () => {
-  const [triggers, setTriggers] = useState({
+  const [triggers, setTriggers] = useState<Triggers>({
     keyHover: false,
     anchorHover: false,
     dividersHover: false
   });
 
-  const [move, setMove] = useState({
+  const [move, setMove] = useState<Move>({
     isPointsAnimating: false,
     isEnded: false
   });
 
-  const [passedAnimationSteps, setPassedAnimationSteps] = useState({
+  const [passedAnimationSteps, setPassedAnimationSteps] = useState<PassedAnimationSteps>({
     showPoints: false,
     showTitle: false,
     showPetr: false,
@@ -31,11 +52,11 @@ const Home = () => {
   });
 
   useEffect(() => {
-    let showTitleTimeout;
-    let showPointsAndPetrMobTimeout;
-    let showPointsMobTimeout;
-    let showPetrAndisPointsAnimatingTimeout;
-    let isEndedTimeout;
+    let showTitleTimeout: TimeoutIdType;
+    let showPointsAndPetrMobTimeout: TimeoutIdType;
+    let showPointsMobTimeout: TimeoutIdType;
+    let showPetrAndisPointsAnimatingTimeout: TimeoutIdType;
+    let isEndedTimeout: TimeoutIdType;
 
     if (!getCookie("visitedBefore")) {
       document.cookie = "visitedBefore=true";
@@ -71,13 +92,13 @@ const Home = () => {
         window.addEventListener("load", onLoadHandler);
       }
     } else {
-      setPassedAnimationSteps((prevState) => ({
+      setPassedAnimationSteps({
         showPointsMob: true,
         showTitle: true,
         showPetr: true,
         showPoints: true,
         showPetrMob: true
-      }));
+      });
       setMove(() => ({ isEnded: true, isPointsAnimating: true }));
     }
     return () => {
@@ -93,7 +114,7 @@ const Home = () => {
   const { showPoints, showTitle, showPetr, showPetrMob, showPointsMob } = passedAnimationSteps;
   const { keyHover, anchorHover, dividersHover } = triggers;
 
-  const mouseOver = (point) => {
+  const mouseOver = (point: string) => {
     if (isEnded === true) {
       setTriggers((prevState) => ({ ...prevState, [point]: true }));
     }

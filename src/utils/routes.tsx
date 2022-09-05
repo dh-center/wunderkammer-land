@@ -9,57 +9,63 @@ import Team from "../pages/Team";
 import CollectionDetailed from "../pages/CollectionDetailed";
 import { COLLECTION_LIST_URL } from "./urls";
 
-const routes = [
+type Route = {
+  path: string;
+  renderElement: () => JSX.Element;
+  pageTitle: string;
+};
+
+const routes: Route[] = [
   {
     path: "/",
     renderElement: () => <Home />,
-    pageTitle: "Wunderkammer",
+    pageTitle: "Wunderkammer"
   },
   {
     path: "cabinet",
     renderElement: () => <Cabinet />,
-    pageTitle: "Кабнет | Wunderkammer",
+    pageTitle: "Кабнет | Wunderkammer"
   },
   {
     path: "collection",
     renderElement: () => <Collection />,
-    pageTitle: "Коллекция | Wunderkammer",
+    pageTitle: "Коллекция | Wunderkammer"
   },
   {
     path: "articles",
     renderElement: () => <Articles />,
-    pageTitle: "Статьи | Wunderkammer",
+    pageTitle: "Статьи | Wunderkammer"
   },
   {
     path: "single-article/:id",
     renderElement: () => <SingleArticle />,
-    pageTitle: "Статьи | Wunderkammer",
+    pageTitle: "Статьи | Wunderkammer"
   },
   {
     path: "about",
     renderElement: () => <About />,
-    pageTitle: "О проекте | Wunderkammer",
+    pageTitle: "О проекте | Wunderkammer"
   },
   {
     path: "map",
     renderElement: () => <Map />,
-    pageTitle: "Карта | Wunderkammer",
+    pageTitle: "Карта | Wunderkammer"
   },
   {
     path: "team",
     renderElement: () => <Team />,
-    pageTitle: "Команда | Wunderkammer",
+    pageTitle: "Команда | Wunderkammer"
   },
   {
     path: COLLECTION_LIST_URL,
     renderElement: () => <CollectionDetailed />,
-    pageTitle: "Коллекция | Wunderkammer",
+    pageTitle: "Коллекция | Wunderkammer"
   },
   {
     path: "*",
     renderElement: () => <>404</>,
-    pageTitle: "Страница не найдена",
-  },
+    pageTitle: "Страница не найдена"
+  }
 ];
 
 export default routes;
