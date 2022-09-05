@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { CardData } from "../containers/CollectionViewerContainer";
+import { CardData } from "../api/cards";
 import usePagination from "../hooks/usePagination";
 
 const PAGE_SIZE = 10;

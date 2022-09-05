@@ -9,7 +9,13 @@ import Team from "../pages/Team";
 import CollectionDetailed from "../pages/CollectionDetailed";
 import { COLLECTION_LIST_URL } from "./urls";
 
-const routes = [
+type Route = {
+  path: string;
+  renderElement: () => JSX.Element;
+  pageTitle: string;
+};
+
+const routes: Route[] = [
   {
     path: "/",
     renderElement: () => <Home />,

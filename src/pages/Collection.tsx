@@ -1,8 +1,7 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { COLLECTION_LIST_URL } from "../utils/urls";
 
-const Collection: React.FC = () => {
+const Collection = () => {
   return (
     <main className="layout_main flex row mobile--column content--space-between mobile-content--start items--start">
       <div className="main_section left desktop-only">

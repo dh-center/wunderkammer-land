@@ -1,7 +1,6 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
-const Cabinet: React.FC = () => {
+const Cabinet = () => {
   return (
     <main className="layout_main flex row mobile--column content--space-between mobile-content--start items--start">
       <div className="main_section left desktop-only">

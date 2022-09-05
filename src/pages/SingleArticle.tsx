@@ -1,8 +1,7 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import Petr from "../assets/images/articles_petr.jpg";
 
-const SingleArticle: React.FC = () => {
+const SingleArticle = () => {
   return (
     <main className="layout_main single-article flex row mobile--column content--start items--start">
       <div className="main_section left desktop-only">

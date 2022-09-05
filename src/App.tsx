@@ -1,11 +1,10 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Menu from "./components/Menu";
 import { useLocation } from "react-router-dom";
 import routes from "./utils/routes";
 import TitledPage from "./components/TitledPage";
-
 
 function App() {
   const location = useLocation();

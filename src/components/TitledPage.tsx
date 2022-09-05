@@ -1,16 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 type TitlePageProps = {
-    title: string,
-    children: JSX.Element,
-}
+  title: string;
+  children: JSX.Element;
+};
 
-const TitledPage: React.FC<TitlePageProps> = ({ title, children }) => {
-    useEffect(() => {
-        document.title = title;
-    }, [title]);
+const TitledPage = ({ title, children }: TitlePageProps) => {
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
 
-    return children;
+  return children;
 };
 
 export default TitledPage;

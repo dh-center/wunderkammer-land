@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-const Menu: React.FC = () => {
-  const [isNavbarOpen, setIsNavbarOpen] = useState<boolean>(false);
-  const [isMenuCabinetOpen, setIsMenuCabinetOpen] = useState<boolean>(false);
+const Menu = () => {
+  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+  const [isMenuCabinetOpen, setIsMenuCabinetOpen] = useState(false);
 
   const location = useLocation();
   useEffect(() => setIsNavbarOpen(false), [location]);

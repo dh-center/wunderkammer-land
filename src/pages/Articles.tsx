@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { Link } from "react-router-dom";
 import Farfor from "../assets/images/articles_farfor.jpg";
@@ -6,7 +6,7 @@ import Grafin from "../assets/images/articles_grafin.jpg";
 import Ikona from "../assets/images/articles_ikona.jpg";
 import Petr from "../assets/images/articles_petr.jpg";
 
-const Articles: React.FC = () => {
+const Articles = () => {
   const [imageUrl, setImageUrl] = useState<string>("");
 
   return (

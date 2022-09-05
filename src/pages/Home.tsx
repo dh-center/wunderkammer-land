@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PolylineAnimate from "../assets/images/svg/polyline_animate.svg";
 import AnimKey from "../assets/images/gif/anim_key.gif";
@@ -6,22 +6,22 @@ import AnimAnchor from "../assets/images/gif/anim_anchor.gif";
 import AnimDividers from "../assets/images/gif/anim_dividers.gif";
 import { getCookie } from "../utils/cookie";
 
-const KeyHover: string = "keyHover";
-const AnchorHover: string = "anchorHover";
-const DividersHover: string = "dividersHover";
+const KeyHover = "keyHover";
+const AnchorHover = "anchorHover";
+const DividersHover = "dividersHover";
 
-type triggersType = {
+type Triggers = {
   keyHover: boolean;
   anchorHover: boolean;
   dividersHover: boolean;
 };
 
-type moveType = {
+type Move = {
   isPointsAnimating: boolean;
   isEnded: boolean;
 };
 
-type passedAnimationStepsType = {
+type PassedAnimationSteps = {
   showPoints: boolean;
   showTitle: boolean;
   showPetr: boolean;
@@ -29,21 +29,21 @@ type passedAnimationStepsType = {
   showPointsMob: boolean;
 };
 
-type timeoutIdType = undefined | ReturnType<typeof setTimeout>;
+type TimeoutIdType = undefined | ReturnType<typeof setTimeout>;
 
-const Home: React.FC = () => {
-  const [triggers, setTriggers] = useState<triggersType>({
+const Home = () => {
+  const [triggers, setTriggers] = useState<Triggers>({
     keyHover: false,
     anchorHover: false,
     dividersHover: false
   });
 
-  const [move, setMove] = useState<moveType>({
+  const [move, setMove] = useState<Move>({
     isPointsAnimating: false,
     isEnded: false
   });
 
-  const [passedAnimationSteps, setPassedAnimationSteps] = useState<passedAnimationStepsType>({
+  const [passedAnimationSteps, setPassedAnimationSteps] = useState<PassedAnimationSteps>({
     showPoints: false,
     showTitle: false,
     showPetr: false,
@@ -52,11 +52,11 @@ const Home: React.FC = () => {
   });
 
   useEffect(() => {
-    let showTitleTimeout: timeoutIdType;
-    let showPointsAndPetrMobTimeout: timeoutIdType;
-    let showPointsMobTimeout: timeoutIdType;
-    let showPetrAndisPointsAnimatingTimeout: timeoutIdType;
-    let isEndedTimeout: timeoutIdType;
+    let showTitleTimeout: TimeoutIdType;
+    let showPointsAndPetrMobTimeout: TimeoutIdType;
+    let showPointsMobTimeout: TimeoutIdType;
+    let showPetrAndisPointsAnimatingTimeout: TimeoutIdType;
+    let isEndedTimeout: TimeoutIdType;
 
     if (!getCookie("visitedBefore")) {
       document.cookie = "visitedBefore=true";
