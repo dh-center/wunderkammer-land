@@ -1,50 +1,46 @@
 import { YMaps, Map, Clusterer, Placemark } from "@pbe/react-yandex-maps";
-import { CardData } from "../api/cards";
+import { AnyObject, YMapsModules } from "@pbe/react-yandex-maps/typings/util/typing";
 
 type MapProps = {
-  data: any[];
-  className: string;
-  defaultState: {
-    center: number[];
-    zoom: number;
-    controls?: string[];
-  };
-  mapModules: string[];
-  clustererOptions: object;
-  placemarkOptions: object;
-  placemarkProperties: (data: CardData) => object;
-  placemarkGeometry: (data: CardData) => number[];
-  placemarkModules: string[];
+  points: {
+    key: number;
+    geometry: [number, number];
+    properties:
+      | {
+          balloonContentHeader?: string;
+          balloonContentBody?: string;
+          iconCaption?: string;
+        }
+      | AnyObject;
+  }[];
+  className?: string;
+  defaultState?: ymaps.IMapState;
+  mapModules?: YMapsModules;
+  placemarkOptions?: ymaps.IPlacemarkOptions;
+  placemarkModules?: string[];
+  withClusterer?: boolean;
+  clustererOptions?: ymaps.IObjectManagerOptions;
 };
 
 const MapComponent = ({
-  data,
+  points,
   className,
   defaultState,
   mapModules,
   clustererOptions,
   placemarkOptions,
-  placemarkProperties,
-  placemarkGeometry,
-  placemarkModules
+  placemarkModules,
+  withClusterer = false
 }: MapProps) => {
+  
+  const getPlacemarks = () =>
+    points.map((point) => <Placemark {...point} options={placemarkOptions} modules={placemarkModules} />);
+
   return (
     <YMaps>
-      <div>
-        <Map defaultState={defaultState} className={className} modules={mapModules}>
-          <Clusterer options={clustererOptions}>
-            {data.map((item) => (
-              <Placemark
-                key={item.id}
-                geometry={placemarkGeometry(item)}
-                properties={placemarkProperties(item)}
-                options={placemarkOptions}
-                modules={placemarkModules}
-              />
-            ))}
-          </Clusterer>
-        </Map>
-      </div>
+      <Map defaultState={defaultState} className={className} modules={mapModules}>
+        {withClusterer ? <Clusterer options={clustererOptions}>{getPlacemarks()}</Clusterer> : getPlacemarks()}
+      </Map>
     </YMaps>
   );
 };

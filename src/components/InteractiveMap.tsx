@@ -1,68 +1,76 @@
+import { useMemo } from "react";
 import { CardData } from "../api/cards";
-import { LOCATION_PROPERTY_ID } from "../containers/InteractiveMapContainer";
-
 import MapComponent from "./MapComponent";
 
+const LOCATION_PROPERTY_ID = 9;
 const ANNOTATION_PROPERTY_ID = 5;
-const DEFAULT_MAP_STATE_COORDINATES = [59.939099, 30.315877]; // Coordinates of St. Petersburg
+const PETERSBURG_COORDINATES = [59.939099, 30.315877];
 const DEFAULT_MAP_ZOOM = 5;
 
-type InteractiveMapProps = {
-  cardsData: CardData[];
+type CardProps = CardData["propertiesList"];
+
+type SorokaGeometry = {
+  location: {
+    type: "Point";
+    coordinates: [number, number];
+  };
+  name: string;
+}[];
+
+const hasLocationProperty = (cardProps: CardProps) => cardProps.some(({ propertyId }) => propertyId === LOCATION_PROPERTY_ID);
+
+const getCoordinatesFromCardData = (cardProps: CardProps) => {
+  const locationProperty = cardProps.find((item) => item.propertyId === LOCATION_PROPERTY_ID);
+  const rawGeometry = JSON.parse(locationProperty!.data) as SorokaGeometry;
+  return rawGeometry[0].location.coordinates;
 };
 
-const InteractiveMap = ({ cardsData }: InteractiveMapProps) => {
-  const getCoordinatesFromCardData = (card: CardData) => {
-    if (card?.propertiesList) {
-      const locationProperty = card.propertiesList.find((item) => item.propertyId === LOCATION_PROPERTY_ID);
-      if (locationProperty) {
-        return JSON.parse(locationProperty.data)[0].location.coordinates;
-      }
-    }
-  };
+const getAnnotationFromCardData = (props: CardProps) => {
+  const annotationProperty = props.find((item) => item.propertyId === ANNOTATION_PROPERTY_ID);
+  if (annotationProperty) {
+    return JSON.parse(annotationProperty.data);
+  }
 
-  const getAnnotationFromCardData = (card: CardData) => {
-    if (card?.propertiesList) {
-      const annotationProperty = card.propertiesList.find((item) => item.propertyId === ANNOTATION_PROPERTY_ID);
-      if (annotationProperty) {
-        return JSON.parse(annotationProperty.data);
-      }
-    }
-  };
+  return "-";
+};
 
-  const getPointData = (pointItem: CardData) => {
-    return {
-      balloonContentHeader: pointItem.name,
-      balloonContentBody: getAnnotationFromCardData(pointItem),
-      clusterCaption: pointItem.name,
-      iconCaption: pointItem.name
-    };
-  };
-
-  const getPointOptions = () => {
-    return {
-      preset: "islands#violetIcon"
-    };
-  };
+const InteractiveMap = ({ cardsData }: { cardsData: CardData[] }) => {
+  const geoPoints = useMemo(
+    () =>
+      cardsData
+        .filter(({ propertiesList }) => !!propertiesList && hasLocationProperty(propertiesList))
+        .map(({ id, propertiesList, name }) => {
+          return {
+            key: id,
+            geometry: getCoordinatesFromCardData(propertiesList),
+            properties: {
+              balloonContentHeader: name,
+              balloonContentBody: getAnnotationFromCardData(propertiesList),
+              iconCaption: name
+            }
+          };
+        }),
+    [cardsData]
+  );
 
   return (
     <MapComponent
-      data={cardsData}
+      points={geoPoints}
       className="ynmap__wrap"
-      defaultState={{ center: DEFAULT_MAP_STATE_COORDINATES, zoom: DEFAULT_MAP_ZOOM }}
+      defaultState={{ center: PETERSBURG_COORDINATES, zoom: DEFAULT_MAP_ZOOM }}
       mapModules={["clusterer.addon.balloon"]}
       clustererOptions={{
         preset: "islands#invertedVioletClusterIcons",
         groupByCoordinates: false,
         clusterDisableClickZoom: true,
-        clusterHideIconOnBalloonOpen: false,
-        geoObjectHideIconOnBalloonOpen: false,
+        clusterHideIconOnBalloonOpen: true,
         showInAlphabeticalOrder: true
       }}
-      placemarkOptions={getPointOptions()}
+      placemarkOptions={{
+        preset: "islands#violetIcon"
+      }}
       placemarkModules={["geoObject.addon.balloon", "geoObject.addon.hint"]}
-      placemarkGeometry={getCoordinatesFromCardData}
-      placemarkProperties={getPointData}
+      withClusterer={true}
     />
   );
 };
