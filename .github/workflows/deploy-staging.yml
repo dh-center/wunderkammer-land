@@ -15,6 +15,7 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
   NAME: wndrkmr-land
+  REACT_APP_API_URL: https://soroka.f128.science/restapi/v1
 
 jobs:
   deploy:
