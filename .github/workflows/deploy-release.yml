@@ -17,6 +17,7 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
   NAME: wndrkmr-land-prod
+  REACT_APP_API_URL: https://soroka.wunder-kammer.ru/restapi/v1
 
 jobs:
   deploy:
@@ -50,6 +51,8 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
+          build-args:
+            REACT_APP_API_URL=${{ env.REACT_APP_API_URL }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
 
