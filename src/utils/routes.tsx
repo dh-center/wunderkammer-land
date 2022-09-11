@@ -7,7 +7,8 @@ import About from "../pages/About";
 import Map from "../pages/Map";
 import Team from "../pages/Team";
 import CollectionDetailed from "../pages/CollectionDetailed";
-import { COLLECTION_LIST_URL } from "./urls";
+import InteractiveMap from "../pages/InteractiveMap";
+import { COLLECTION_LIST_URL, INTERACTIVE_MAP } from "./urls";
 
 type Route = {
   path: string;
@@ -60,6 +61,11 @@ const routes: Route[] = [
     path: COLLECTION_LIST_URL,
     renderElement: () => <CollectionDetailed />,
     pageTitle: "Коллекция | Wunderkammer"
+  },
+  {
+    path: INTERACTIVE_MAP,
+    renderElement: () => <InteractiveMap />,
+    pageTitle: "Карта | Wunderkammer"
   },
   {
     path: "*",

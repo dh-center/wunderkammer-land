@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { INTERACTIVE_MAP } from "../utils/urls";
 
 const Map = () => {
   return (
@@ -342,7 +343,11 @@ const Map = () => {
           Увидеть это становится возможно с помощью интерактивной карты петровской эпохи, которая наглядно покажет как
           «преображался» и «жил» мир.
         </div>
-        {/* <div className="section_footer">&nbsp</div> */}
+        <div className="section_footer">
+          <Link className="section_footer_more" to={INTERACTIVE_MAP}>
+            перейти к карте
+          </Link>
+        </div>
       </div>
     </main>
   );

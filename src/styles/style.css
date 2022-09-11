@@ -807,7 +807,8 @@ body{
     margin: 0;
     padding: 0;
     outline: none;
-    color: inherit
+    color: inherit;
+    border: none;
 }
 
 .menu_cabinet_contaner:hover {
@@ -1042,7 +1043,7 @@ body{
 
 .dividers_top_container{
     width: 100%;
-    height: 89%;
+    height: 87%;
     
 
     border-width: 0;
@@ -1083,7 +1084,7 @@ body{
 
 .dividers_bottom_container{
     width: 100%;
-    height: 11%;
+    height: 13%;
 }
 
 .dividers_bottom_left_container{
@@ -1594,4 +1595,9 @@ p.team_person{
 .pagination__root li:hover {
     background-color: gray;
     transition: 0.3s ease;
+}
+
+.ynmap__wrap {
+    width: 100%;
+    height: 100vh;
 }
