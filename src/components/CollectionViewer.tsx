@@ -10,9 +10,16 @@ type CardItemProps = {
   propertiesList: CardData["propertiesList"];
 };
 
+type organizationState = {
+  id: number;
+  name: string;
+};
+
 type Props = {
   cards: CardData[];
+  organizations: organizationState[];
   isLoading: boolean;
+  setFilterValue: (id: number) => void;
 };
 
 const simpleSearch = (str: string, lowerCaseSearch: string) => str.toLowerCase().indexOf(lowerCaseSearch) !== -1;
@@ -27,7 +34,7 @@ const CardItem = ({ id, name, propertiesList }: CardItemProps) => (
   </li>
 );
 
-const CollectionViewer = ({ cards, isLoading }: Props) => {
+const CollectionViewer = ({ cards, isLoading, organizations, setFilterValue }: Props) => {
   const [searchValue, setSearchValue] = useState("");
 
   const filtered = useMemo(
@@ -54,6 +61,14 @@ const CollectionViewer = ({ cards, isLoading }: Props) => {
           }}
         />
       </div>
+      <select className="collection-detailed__filter" onChange={(e) => setFilterValue(Number(e.target.value))}>
+        <option value={0}>Все организации</option>
+        {organizations.map((item) => (
+          <option key={item.id} value={item.id}>
+            {item.name}
+          </option>
+        ))}
+      </select>
       {isLoading ? (
         <p>Загрузка...</p>
       ) : (

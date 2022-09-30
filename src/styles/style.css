@@ -1522,6 +1522,13 @@ p.team_person{
     outline: none;
 }
 
+.collection-detailed__filter {
+    width: 15rem;
+    display: block;
+    margin-top: 1rem;
+    padding: 0.3rem;
+}
+
 .collection-detailed__search-button {
     background: none;
     border: none;
