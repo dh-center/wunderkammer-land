@@ -621,7 +621,8 @@ body{
 }
 
 .navbar.navbar--open{
-    position: absolute;
+    height: 100%;
+    position: fixed;
     margin-right: 0;
     width: 50%;
     overflow-y: auto;
@@ -790,9 +791,14 @@ body{
     }
 }
 
-.menu-bullet_collection {
+.menu-bullet-active {
     visibility: visible;
     opacity: 1;
+    transition: opacity .1s ease, visibility .1s ease;
+}
+
+.menu-list_item {
+    white-space: nowrap;
 }
 
 
@@ -800,11 +806,6 @@ body{
     visibility: visible;
     opacity: 1;
 } */
-
-.menu-bullet_map{
-    visibility: visible;
-    opacity: 1; 
-}
 
 /* .menu_map_contaner:hover .menu-bullet{
     visibility: visible;
@@ -1529,7 +1530,7 @@ p.team_person{
 /* Collection detailed ↓ */
 
 .collection-detailed__wrap {
-    margin: 1rem;
+    padding: 1rem;
 }
 
 .collection-detailed__search {

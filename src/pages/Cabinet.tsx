@@ -155,22 +155,6 @@ const Cabinet = () => {
             <li className="">
               <Link to="/articles">Статьи</Link>
             </li>
-
-            <li className="">
-              <Link to="#">Медиа</Link>
-            </li>
-
-            <li className="">
-              <Link to="#">Словарь</Link>
-            </li>
-
-            <li className="">
-              <Link to="#">Игровая зона</Link>
-            </li>
-
-            <li className="">
-              <Link to="#">Библиотека</Link>
-            </li>
           </ul>
         </div>
       </div>

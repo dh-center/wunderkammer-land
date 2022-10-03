@@ -3,13 +3,47 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { ABOUT_URL, ARTICLES_URL, CABINET_URL, COLLECTION_URL, MAP_URL, TEAM_URL } from "../utils/urls";
 
+class MenuItem {
+  label: string;
+  route: string;
+  constructor(label: string, route: string) {
+    this.label = label;
+    this.route = route;
+  }
+
+  isSelected(path: string): boolean {
+    return path.startsWith(this.route);
+  }
+}
+class ExpandableMenuItem extends MenuItem {
+  subItems: MenuItem[] = [];
+  constructor(label: string, route: string, subItems?: MenuItem[]) {
+    super(label, route);
+
+    if (subItems) {
+      this.subItems = subItems;
+    }
+  }
+
+  isSelected(path: string): boolean {
+    return super.isSelected(path) || this.subItems.some((item) => item.isSelected(path));
+  }
+}
+
 const Menu = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const [isMenuCabinetOpen, setIsMenuCabinetOpen] = useState(false);
   const location = useLocation();
   const pathname = location.pathname.slice(1);
-  console.log(pathname, "pathname");
   useEffect(() => setIsNavbarOpen(false), [location]);
+
+  const mainMenu = [
+    new MenuItem("Коллекция", COLLECTION_URL),
+    new MenuItem("Карта", MAP_URL),
+    new ExpandableMenuItem("Кабинет", CABINET_URL, [new MenuItem("Статьи", ARTICLES_URL)])
+  ];
+
+  const footerMenu = [new MenuItem("О проекте", ABOUT_URL), new MenuItem("О Команда", TEAM_URL)];
 
   return (
     <nav className={`navbar ${isNavbarOpen ? "navbar--open" : ""}`}>
@@ -61,103 +95,67 @@ const Menu = () => {
       >
         <div className="menu_container menu-top_container">
           <ul className="menu-top flex column content--start items--start">
-            <Link
-              to="/collection"
-              className="menu_block_contaner menu_collection_contaner"
-              onClick={() => {
-                setIsMenuCabinetOpen(false);
-              }}
-            >
-              <div className={`menu-bullet ${pathname === COLLECTION_URL && isNavbarOpen ? "menu-bullet_collection" : ""}`}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                  <circle r="50%" cx="50%" cy="50%" fill="#0000ff" stroke="#0000ff" strokeWidth="0"></circle>
-                </svg>
+            {mainMenu.map((item, index) => (
+              <div>
+                <Link
+                  key={index}
+                  to={item.route}
+                  className="menu_block_contaner"
+                  onClick={() => {
+                    setIsMenuCabinetOpen(false);
+                  }}
+                >
+                  <div className={`menu-bullet ${item.isSelected(pathname) && isNavbarOpen ? "menu-bullet-active" : ""}`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                      <circle r="50%" cx="50%" cy="50%" fill="#0000ff" stroke="#0000ff" strokeWidth="0"></circle>
+                    </svg>
+                  </div>
+                  <li className="menu-list_item">{item.label}</li>
+                </Link>
+                {(item as ExpandableMenuItem).subItems?.length && (
+                  <ul className="submenu">
+                    {(item as ExpandableMenuItem).subItems?.map((subitem) => (
+                      <li className="menu-list_item">
+                        <Link to={subitem.route}>{subitem.label}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
-              <li className="menu_collection">Коллекция</li>
-            </Link>
-
-            <Link
-              to="/map"
-              className="menu_block_contaner menu_map_contaner"
-              onClick={() => {
-                setIsMenuCabinetOpen(false);
-              }}
-            >
-              <div className={`menu-bullet ${pathname === MAP_URL && isNavbarOpen ? "menu-bullet_map" : ""}`}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                  <circle r="50%" cx="50%" cy="50%" fill="#0000ff" stroke="#0000ff" strokeWidth="0"></circle>
-                </svg>
-              </div>
-              <li className="menu_map">Карта</li>
-            </Link>
-
-            <button
-              className="menu_block_contaner menu_cabinet_contaner"
-              onClick={(event) => {
-                event.preventDefault();
-                setIsMenuCabinetOpen((prev) => !prev);
-              }}
-            >
-              <div
-                className={`menu-bullet ${
-                  pathname === CABINET_URL || (pathname === ARTICLES_URL && isNavbarOpen) ? "menu-bullet_cabinet" : ""
-                }`}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                  <circle r="50%" cx="50%" cy="50%" fill="#0000ff" stroke="#0000ff" strokeWidth="0"></circle>
-                </svg>
-              </div>
-              <li className={`menu_cabinet ${isMenuCabinetOpen ? "cabinet--open" : ""}`}>Кабинет</li>
-            </button>
-
-            <ul className={`submenu submenu-cabinet hidden ${isMenuCabinetOpen ? "fade_show" : ""}`}>
-              <li>
-                <Link to="/articles">Статьи</Link>
-              </li>
-              <li className="hidden">
-                <Link to="/cabinet">Медиа</Link>
-              </li>
-              <li className="hidden">
-                <Link to="/cabinet">Словарь</Link>
-              </li>
-              <li className="hidden">
-                <Link to="/cabinet">Игровая&nbsp;зона</Link>
-              </li>
-              <li className="hidden">
-                <Link to="/cabinet">Библиотека</Link>
-              </li>
-            </ul>
+            ))}
           </ul>
         </div>
 
         <div className="menu_container menu-bottom_container">
           <ul className="menu-bottom flex column content--start items--start">
-            <Link to="#" className="menu_block_contaner menu_soroka_contaner" style={{ display: "none" }}>
-              <div className="menu-bullet menu-bullet_soroka">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                  <circle r="50%" cx="50%" cy="50%" fill="#ff0000" stroke="#ff0000" strokeWidth="0"></circle>
-                </svg>
+            {footerMenu.map((item, index) => (
+              <div>
+                <Link
+                  key={index}
+                  to={item.route}
+                  className="menu_block_contaner"
+                  onClick={() => {
+                    setIsMenuCabinetOpen(false);
+                  }}
+                >
+                  <div className={`menu-bullet ${item.isSelected(pathname) && isNavbarOpen ? "menu-bullet-active" : ""}`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                      <circle r="50%" cx="50%" cy="50%" fill="#ff0000" stroke="#ff0000" strokeWidth="0"></circle>
+                    </svg>
+                  </div>
+                  <li className="menu-list_item">{item.label}</li>
+                </Link>
+                {(item as ExpandableMenuItem).subItems?.length && (
+                  <ul className="submenu">
+                    {(item as ExpandableMenuItem).subItems?.map((subitem) => (
+                      <li className="menu-list_item">
+                        <Link to={subitem.route}>{subitem.label}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
-              <li className="menu_soroka">Платформа&nbsp;«Сорока»</li>
-            </Link>
-
-            <Link to="/about" className="menu_block_contaner menu_about_contaner">
-              <div className={`menu-bullet ${pathname === ABOUT_URL && isNavbarOpen ? "menu-bullet_about" : ""}`}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                  <circle r="50%" cx="50%" cy="50%" fill="#ff0000" stroke="#ff0000" strokeWidth="0"></circle>
-                </svg>
-              </div>
-              <li className="menu_about">О&nbsp;проекте</li>
-            </Link>
-
-            <Link to="/team" className="menu_block_contaner menu_team_contaner">
-              <div className={`menu-bullet ${pathname === TEAM_URL && isNavbarOpen ? "menu-bullet_team" : ""}`}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                  <circle r="50%" cx="50%" cy="50%" fill="#ff0000" stroke="#ff0000" strokeWidth="0"></circle>
-                </svg>
-              </div>
-              <li className="menu_team">Команда</li>
-            </Link>
+            ))}
           </ul>
         </div>
       </div>
