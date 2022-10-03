@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { ABOUT_URL, ARTICLES_URL, CABINET_URL, COLLECTION_URL, MAP_URL, TEAM_URL } from "../utils/urls";
 
 const Menu = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const [isMenuCabinetOpen, setIsMenuCabinetOpen] = useState(false);
-
   const location = useLocation();
+  const pathname = location.pathname.slice(1);
+  console.log(pathname, "pathname");
   useEffect(() => setIsNavbarOpen(false), [location]);
 
   return (
@@ -59,8 +61,14 @@ const Menu = () => {
       >
         <div className="menu_container menu-top_container">
           <ul className="menu-top flex column content--start items--start">
-            <Link to="/collection" className="menu_block_contaner menu_collection_contaner">
-              <div className="menu-bullet menu-bullet_collection">
+            <Link
+              to="/collection"
+              className="menu_block_contaner menu_collection_contaner"
+              onClick={() => {
+                setIsMenuCabinetOpen(false);
+              }}
+            >
+              <div className={`menu-bullet ${pathname === COLLECTION_URL && isNavbarOpen ? "menu-bullet_collection" : ""}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
                   <circle r="50%" cx="50%" cy="50%" fill="#0000ff" stroke="#0000ff" strokeWidth="0"></circle>
                 </svg>
@@ -68,8 +76,14 @@ const Menu = () => {
               <li className="menu_collection">Коллекция</li>
             </Link>
 
-            <Link to="/map" className="menu_block_contaner menu_map_contaner">
-              <div className="menu-bullet menu-bullet_map">
+            <Link
+              to="/map"
+              className="menu_block_contaner menu_map_contaner"
+              onClick={() => {
+                setIsMenuCabinetOpen(false);
+              }}
+            >
+              <div className={`menu-bullet ${pathname === MAP_URL && isNavbarOpen ? "menu-bullet_map" : ""}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
                   <circle r="50%" cx="50%" cy="50%" fill="#0000ff" stroke="#0000ff" strokeWidth="0"></circle>
                 </svg>
@@ -84,7 +98,11 @@ const Menu = () => {
                 setIsMenuCabinetOpen((prev) => !prev);
               }}
             >
-              <div className={`menu-bullet menu-bullet_cabinet ${isMenuCabinetOpen && isNavbarOpen ? "cabinet--open" : ""}`}>
+              <div
+                className={`menu-bullet ${
+                  pathname === CABINET_URL || (pathname === ARTICLES_URL && isNavbarOpen) ? "menu-bullet_cabinet" : ""
+                }`}
+              >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
                   <circle r="50%" cx="50%" cy="50%" fill="#0000ff" stroke="#0000ff" strokeWidth="0"></circle>
                 </svg>
@@ -96,16 +114,16 @@ const Menu = () => {
               <li>
                 <Link to="/articles">Статьи</Link>
               </li>
-              <li>
+              <li className="hidden">
                 <Link to="/cabinet">Медиа</Link>
               </li>
-              <li>
+              <li className="hidden">
                 <Link to="/cabinet">Словарь</Link>
               </li>
-              <li>
+              <li className="hidden">
                 <Link to="/cabinet">Игровая&nbsp;зона</Link>
               </li>
-              <li>
+              <li className="hidden">
                 <Link to="/cabinet">Библиотека</Link>
               </li>
             </ul>
@@ -114,7 +132,7 @@ const Menu = () => {
 
         <div className="menu_container menu-bottom_container">
           <ul className="menu-bottom flex column content--start items--start">
-            <Link to="#" className="menu_block_contaner menu_soroka_contaner">
+            <Link to="#" className="menu_block_contaner menu_soroka_contaner" style={{ display: "none" }}>
               <div className="menu-bullet menu-bullet_soroka">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
                   <circle r="50%" cx="50%" cy="50%" fill="#ff0000" stroke="#ff0000" strokeWidth="0"></circle>
@@ -124,7 +142,7 @@ const Menu = () => {
             </Link>
 
             <Link to="/about" className="menu_block_contaner menu_about_contaner">
-              <div className="menu-bullet menu-bullet_about">
+              <div className={`menu-bullet ${pathname === ABOUT_URL && isNavbarOpen ? "menu-bullet_about" : ""}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
                   <circle r="50%" cx="50%" cy="50%" fill="#ff0000" stroke="#ff0000" strokeWidth="0"></circle>
                 </svg>
@@ -133,7 +151,7 @@ const Menu = () => {
             </Link>
 
             <Link to="/team" className="menu_block_contaner menu_team_contaner">
-              <div className="menu-bullet menu-bullet_team">
+              <div className={`menu-bullet ${pathname === TEAM_URL && isNavbarOpen ? "menu-bullet_team" : ""}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
                   <circle r="50%" cx="50%" cy="50%" fill="#ff0000" stroke="#ff0000" strokeWidth="0"></circle>
                 </svg>

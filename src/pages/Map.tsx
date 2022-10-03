@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { INTERACTIVE_MAP } from "../utils/urls";
+import { INTERACTIVE_MAP_URL } from "../utils/urls";
 
 const Map = () => {
   return (
@@ -344,7 +344,7 @@ const Map = () => {
           «преображался» и «жил» мир.
         </div>
         <div className="section_footer">
-          <Link className="section_footer_more" to={INTERACTIVE_MAP}>
+          <Link className="section_footer_more" to={INTERACTIVE_MAP_URL}>
             перейти к карте
           </Link>
         </div>

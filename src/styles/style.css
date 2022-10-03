@@ -766,9 +766,8 @@ body{
 }
 
 .menu-top a, .menu-bottom a {
-    
     display: block;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 .menu-top a:hover, .menu-bottom a:hover{
@@ -791,16 +790,26 @@ body{
     }
 }
 
-
-.menu_collection_contaner:hover .menu-bullet_collection{
+.menu-bullet_collection {
     visibility: visible;
     opacity: 1;
 }
 
-.menu_map_contaner:hover .menu-bullet_map{
+
+/* .menu_collection_contaner:hover .menu-bullet{
     visibility: visible;
     opacity: 1;
+} */
+
+.menu-bullet_map{
+    visibility: visible;
+    opacity: 1; 
 }
+
+/* .menu_map_contaner:hover .menu-bullet{
+    visibility: visible;
+    opacity: 1;
+} */
 
 .menu_cabinet_contaner {
     background:  none;
@@ -815,6 +824,11 @@ body{
     color: white
 }
 
+.menu-bullet_cabinet {
+    visibility: visible;
+    opacity: 1;
+}
+
 .menu_cabinet_contaner:hover .menu-bullet_cabinet, .menu-bullet_cabinet.cabinet--open{
     visibility: visible;
     opacity: 1;
@@ -825,9 +839,19 @@ body{
     opacity: 1;
 }
 
+.menu-bullet_about {
+    visibility: visible;
+    opacity: 1;
+}
+
 .menu_about_contaner:hover .menu-bullet_about{
     visibility: visible;
     opacity: 1;
+}
+
+.menu-bullet_team {
+    visibility: visible;
+    opacity: 1;  
 }
 
 .menu_team_contaner:hover .menu-bullet_team{
