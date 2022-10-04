@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { ABOUT_URL, ARTICLES_URL, CABINET_URL, COLLECTION_URL, MAP_URL, TEAM_URL } from "../utils/urls";
+import MenuItem from "./MenuItem";
 
-class MenuItem {
+export class MenuElement {
   label: string;
   route: string;
   constructor(label: string, route: string) {
@@ -15,18 +16,18 @@ class MenuItem {
     return path.startsWith(this.route);
   }
 }
-class ExpandableMenuItem extends MenuItem {
-  subItems: MenuItem[] = [];
-  constructor(label: string, route: string, subItems?: MenuItem[]) {
+export class ExpandableMenuElement extends MenuElement {
+  subElements: MenuElement[] = [];
+  constructor(label: string, route: string, subElements?: MenuElement[]) {
     super(label, route);
 
-    if (subItems) {
-      this.subItems = subItems;
+    if (subElements) {
+      this.subElements = subElements;
     }
   }
 
   isSelected(path: string): boolean {
-    return super.isSelected(path) || this.subItems.some((item) => item.isSelected(path));
+    return super.isSelected(path) || this.subElements.some((item) => item.isSelected(path));
   }
 }
 
@@ -38,12 +39,12 @@ const Menu = () => {
   useEffect(() => setIsNavbarOpen(false), [location]);
 
   const mainMenu = [
-    new MenuItem("Коллекция", COLLECTION_URL),
-    new MenuItem("Карта", MAP_URL),
-    new ExpandableMenuItem("Кабинет", CABINET_URL, [new MenuItem("Статьи", ARTICLES_URL)])
+    new MenuElement("Коллекция", COLLECTION_URL),
+    new MenuElement("Карта", MAP_URL),
+    new ExpandableMenuElement("Кабинет", CABINET_URL, [new MenuElement("Статьи", ARTICLES_URL)])
   ];
 
-  const footerMenu = [new MenuItem("О проекте", ABOUT_URL), new MenuItem("О Команда", TEAM_URL)];
+  const footerMenu = [new MenuElement("О проекте", ABOUT_URL), new MenuElement("О Команда", TEAM_URL)];
 
   return (
     <nav className={`navbar ${isNavbarOpen ? "navbar--open" : ""}`}>
@@ -96,32 +97,14 @@ const Menu = () => {
         <div className="menu_container menu-top_container">
           <ul className="menu-top flex column content--start items--start">
             {mainMenu.map((item, index) => (
-              <div>
-                <Link
-                  key={index}
-                  to={item.route}
-                  className="menu_block_contaner"
-                  onClick={() => {
-                    setIsMenuCabinetOpen(false);
-                  }}
-                >
-                  <div className={`menu-bullet ${item.isSelected(pathname) && isNavbarOpen ? "menu-bullet-active" : ""}`}>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                      <circle r="50%" cx="50%" cy="50%" fill="#0000ff" stroke="#0000ff" strokeWidth="0"></circle>
-                    </svg>
-                  </div>
-                  <li className="menu-list_item">{item.label}</li>
-                </Link>
-                {(item as ExpandableMenuItem).subItems?.length && (
-                  <ul className="submenu">
-                    {(item as ExpandableMenuItem).subItems?.map((subitem) => (
-                      <li className="menu-list_item">
-                        <Link to={subitem.route}>{subitem.label}</Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
+              <MenuItem
+                key={index}
+                item={item}
+                setIsMenuCabinetOpen={setIsMenuCabinetOpen}
+                pathname={pathname}
+                isNavbarOpen={isNavbarOpen}
+                menuType="main"
+              />
             ))}
           </ul>
         </div>
@@ -129,32 +112,14 @@ const Menu = () => {
         <div className="menu_container menu-bottom_container">
           <ul className="menu-bottom flex column content--start items--start">
             {footerMenu.map((item, index) => (
-              <div>
-                <Link
-                  key={index}
-                  to={item.route}
-                  className="menu_block_contaner"
-                  onClick={() => {
-                    setIsMenuCabinetOpen(false);
-                  }}
-                >
-                  <div className={`menu-bullet ${item.isSelected(pathname) && isNavbarOpen ? "menu-bullet-active" : ""}`}>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                      <circle r="50%" cx="50%" cy="50%" fill="#ff0000" stroke="#ff0000" strokeWidth="0"></circle>
-                    </svg>
-                  </div>
-                  <li className="menu-list_item">{item.label}</li>
-                </Link>
-                {(item as ExpandableMenuItem).subItems?.length && (
-                  <ul className="submenu">
-                    {(item as ExpandableMenuItem).subItems?.map((subitem) => (
-                      <li className="menu-list_item">
-                        <Link to={subitem.route}>{subitem.label}</Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
+              <MenuItem
+                key={index}
+                item={item}
+                setIsMenuCabinetOpen={setIsMenuCabinetOpen}
+                pathname={pathname}
+                isNavbarOpen={isNavbarOpen}
+                menuType="footer"
+              />
             ))}
           </ul>
         </div>
