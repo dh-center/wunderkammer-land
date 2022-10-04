@@ -11,7 +11,8 @@ const getPatchedCards = (cardsList: CardData[], propertiesList: Property[]) => {
       propertyName: propertiesList.find(({ propertyId }) => propertyId === cardProperty.propertyId)?.name || ""
     }))
   }));
-  return patched;
+  const patchedWithoutMS = patched.filter((item) => item.organizationId !== 1);
+  return patchedWithoutMS;
 };
 
 const CollectionViewerContainer = () => {
@@ -21,14 +22,17 @@ const CollectionViewerContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    CardsAPI.getOrganizations().then((res) =>
-      setOrganizations(
-        res.map((item) => ({
-          id: item.id,
-          name: item.name
-        }))
-      )
-    );
+    let orgMass: { id: number; name: string }[] = [];
+    CardsAPI.getOrganizations().then((res) => {
+      res.forEach((item, index) => {
+        if (item.id !== 1)
+          orgMass[index] = {
+            id: item.id,
+            name: item.name
+          };
+      });
+      setOrganizations(orgMass);
+    });
   }, []);
 
   useEffect(() => {
