@@ -1,5 +1,5 @@
 export const COLLECTION_LIST_URL = "/collection_detailed";
-export const INTERACTIVE_MAP_URL = "/interactive_map";
+export const INTERACTIVE_MAP_URL = "/map/peter_travels";
 export const TEAM_URL = "team";
 export const MAP_URL = "map";
 export const ABOUT_URL = "about";

@@ -6,7 +6,7 @@ type MenuItemProps = {
   setIsMenuCabinetOpen: (value: boolean) => void;
   pathname: string;
   isNavbarOpen: boolean;
-  menuType: string;
+  menuType: "main" | "footer";
 };
 
 const MenuItem = ({ item, setIsMenuCabinetOpen, pathname, isNavbarOpen, menuType }: MenuItemProps) => {
