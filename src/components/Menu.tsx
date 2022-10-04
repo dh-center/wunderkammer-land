@@ -1,13 +1,50 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { ABOUT_URL, ARTICLES_URL, CABINET_URL, COLLECTION_URL, MAP_URL, TEAM_URL } from "../utils/urls";
+import MenuItem from "./MenuItem";
+
+export class MenuElement {
+  label: string;
+  route: string;
+  constructor(label: string, route: string) {
+    this.label = label;
+    this.route = route;
+  }
+
+  isSelected(path: string): boolean {
+    return path.startsWith(this.route);
+  }
+}
+export class ExpandableMenuElement extends MenuElement {
+  subElements: MenuElement[] = [];
+  constructor(label: string, route: string, subElements?: MenuElement[]) {
+    super(label, route);
+
+    if (subElements) {
+      this.subElements = subElements;
+    }
+  }
+
+  isSelected(path: string): boolean {
+    return super.isSelected(path) || this.subElements.some((item) => item.isSelected(path));
+  }
+}
 
 const Menu = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const [isMenuCabinetOpen, setIsMenuCabinetOpen] = useState(false);
-
   const location = useLocation();
+  const pathname = location.pathname.slice(1);
   useEffect(() => setIsNavbarOpen(false), [location]);
+
+  const mainMenu = [
+    new MenuElement("Коллекция", COLLECTION_URL),
+    new MenuElement("Карта", MAP_URL),
+    new ExpandableMenuElement("Кабинет", CABINET_URL, [new MenuElement("Статьи", ARTICLES_URL)])
+  ];
+
+  const footerMenu = [new MenuElement("О проекте", ABOUT_URL), new MenuElement("О Команда", TEAM_URL)];
 
   return (
     <nav className={`navbar ${isNavbarOpen ? "navbar--open" : ""}`}>
@@ -59,87 +96,31 @@ const Menu = () => {
       >
         <div className="menu_container menu-top_container">
           <ul className="menu-top flex column content--start items--start">
-            <Link to="/collection" className="menu_block_contaner menu_collection_contaner">
-              <div className="menu-bullet menu-bullet_collection">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                  <circle r="50%" cx="50%" cy="50%" fill="#0000ff" stroke="#0000ff" strokeWidth="0"></circle>
-                </svg>
-              </div>
-              <li className="menu_collection">Коллекция</li>
-            </Link>
-
-            <Link to="/map" className="menu_block_contaner menu_map_contaner">
-              <div className="menu-bullet menu-bullet_map">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                  <circle r="50%" cx="50%" cy="50%" fill="#0000ff" stroke="#0000ff" strokeWidth="0"></circle>
-                </svg>
-              </div>
-              <li className="menu_map">Карта</li>
-            </Link>
-
-            <button
-              className="menu_block_contaner menu_cabinet_contaner"
-              onClick={(event) => {
-                event.preventDefault();
-                setIsMenuCabinetOpen((prev) => !prev);
-              }}
-            >
-              <div className={`menu-bullet menu-bullet_cabinet ${isMenuCabinetOpen && isNavbarOpen ? "cabinet--open" : ""}`}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                  <circle r="50%" cx="50%" cy="50%" fill="#0000ff" stroke="#0000ff" strokeWidth="0"></circle>
-                </svg>
-              </div>
-              <li className={`menu_cabinet ${isMenuCabinetOpen ? "cabinet--open" : ""}`}>Кабинет</li>
-            </button>
-
-            <ul className={`submenu submenu-cabinet hidden ${isMenuCabinetOpen ? "fade_show" : ""}`}>
-              <li>
-                <Link to="/articles">Статьи</Link>
-              </li>
-              <li>
-                <Link to="/cabinet">Медиа</Link>
-              </li>
-              <li>
-                <Link to="/cabinet">Словарь</Link>
-              </li>
-              <li>
-                <Link to="/cabinet">Игровая&nbsp;зона</Link>
-              </li>
-              <li>
-                <Link to="/cabinet">Библиотека</Link>
-              </li>
-            </ul>
+            {mainMenu.map((item, index) => (
+              <MenuItem
+                key={index}
+                item={item}
+                setIsMenuCabinetOpen={setIsMenuCabinetOpen}
+                pathname={pathname}
+                isNavbarOpen={isNavbarOpen}
+                menuType="main"
+              />
+            ))}
           </ul>
         </div>
 
         <div className="menu_container menu-bottom_container">
           <ul className="menu-bottom flex column content--start items--start">
-            <Link to="#" className="menu_block_contaner menu_soroka_contaner">
-              <div className="menu-bullet menu-bullet_soroka">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                  <circle r="50%" cx="50%" cy="50%" fill="#ff0000" stroke="#ff0000" strokeWidth="0"></circle>
-                </svg>
-              </div>
-              <li className="menu_soroka">Платформа&nbsp;«Сорока»</li>
-            </Link>
-
-            <Link to="/about" className="menu_block_contaner menu_about_contaner">
-              <div className="menu-bullet menu-bullet_about">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                  <circle r="50%" cx="50%" cy="50%" fill="#ff0000" stroke="#ff0000" strokeWidth="0"></circle>
-                </svg>
-              </div>
-              <li className="menu_about">О&nbsp;проекте</li>
-            </Link>
-
-            <Link to="/team" className="menu_block_contaner menu_team_contaner">
-              <div className="menu-bullet menu-bullet_team">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                  <circle r="50%" cx="50%" cy="50%" fill="#ff0000" stroke="#ff0000" strokeWidth="0"></circle>
-                </svg>
-              </div>
-              <li className="menu_team">Команда</li>
-            </Link>
+            {footerMenu.map((item, index) => (
+              <MenuItem
+                key={index}
+                item={item}
+                setIsMenuCabinetOpen={setIsMenuCabinetOpen}
+                pathname={pathname}
+                isNavbarOpen={isNavbarOpen}
+                menuType="footer"
+              />
+            ))}
           </ul>
         </div>
       </div>

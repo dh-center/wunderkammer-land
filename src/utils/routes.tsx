@@ -8,7 +8,17 @@ import Map from "../pages/Map";
 import Team from "../pages/Team";
 import CollectionDetailed from "../pages/CollectionDetailed";
 import InteractiveMap from "../pages/InteractiveMap";
-import { COLLECTION_LIST_URL, INTERACTIVE_MAP } from "./urls";
+import {
+  ABOUT_URL,
+  ARTICLES_URL,
+  CABINET_URL,
+  COLLECTION_URL,
+  COLLECTION_LIST_URL,
+  INTERACTIVE_MAP_URL,
+  MAP_URL,
+  SINGLE_ARTICLE_URL,
+  TEAM_URL
+} from "./urls";
 
 type Route = {
   path: string;
@@ -23,37 +33,37 @@ const routes: Route[] = [
     pageTitle: "Wunderkammer"
   },
   {
-    path: "cabinet",
+    path: CABINET_URL,
     renderElement: () => <Cabinet />,
     pageTitle: "Кабнет | Wunderkammer"
   },
   {
-    path: "collection",
+    path: COLLECTION_URL,
     renderElement: () => <Collection />,
     pageTitle: "Коллекция | Wunderkammer"
   },
   {
-    path: "articles",
+    path: ARTICLES_URL,
     renderElement: () => <Articles />,
     pageTitle: "Статьи | Wunderkammer"
   },
   {
-    path: "single-article/:id",
+    path: SINGLE_ARTICLE_URL,
     renderElement: () => <SingleArticle />,
     pageTitle: "Статьи | Wunderkammer"
   },
   {
-    path: "about",
+    path: ABOUT_URL,
     renderElement: () => <About />,
     pageTitle: "О проекте | Wunderkammer"
   },
   {
-    path: "map",
+    path: MAP_URL,
     renderElement: () => <Map />,
     pageTitle: "Карта | Wunderkammer"
   },
   {
-    path: "team",
+    path: TEAM_URL,
     renderElement: () => <Team />,
     pageTitle: "Команда | Wunderkammer"
   },
@@ -63,7 +73,7 @@ const routes: Route[] = [
     pageTitle: "Коллекция | Wunderkammer"
   },
   {
-    path: INTERACTIVE_MAP,
+    path: INTERACTIVE_MAP_URL,
     renderElement: () => <InteractiveMap />,
     pageTitle: "Карта | Wunderkammer"
   },
