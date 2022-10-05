@@ -33,7 +33,7 @@ export class ExpandableMenuElement extends MenuElement {
 
 const Menu = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
-  const [isMenuCabinetOpen, setIsMenuCabinetOpen] = useState(false);
+  const [, setIsMenuCabinetOpen] = useState(false);
   const location = useLocation();
   const pathname = location.pathname.slice(1);
   useEffect(() => setIsNavbarOpen(false), [location]);

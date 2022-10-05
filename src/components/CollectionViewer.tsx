@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { CardData } from "../api/cards";
 import usePagination from "../hooks/usePagination";
+import PropertiesParser from "./PropertiesParser";
 
 const PAGE_SIZE = 10;
 
@@ -23,16 +24,22 @@ type Props = {
 };
 
 const simpleSearch = (str: string, lowerCaseSearch: string) => str.toLowerCase().indexOf(lowerCaseSearch) !== -1;
-const CardItem = ({ id, name, propertiesList }: CardItemProps) => (
-  <li key={id} className="collection-detailed__card-item">
-    <h3>{name}</h3>
-    <ul className="collection-detailed__properties-list">
-      {propertiesList?.map(({ propertyName, data, propertyId }) => (
-        <li key={propertyId} className="collection-detailed__properties-list-item">{`${propertyName}: ${data}`}</li>
-      ))}
-    </ul>
-  </li>
-);
+const CardItem = ({ id, name, propertiesList }: CardItemProps) => {
+  return (
+    <li key={id} className="collection-detailed__card-item">
+      <h3>{name}</h3>
+      <ul className="collection-detailed__properties-list">
+        {propertiesList?.map((property) => {
+          return (
+            <li key={property.propertyId} className="collection-detailed__properties-list-item">
+              <PropertiesParser property={property} />
+            </li>
+          );
+        })}
+      </ul>
+    </li>
+  );
+};
 
 const CollectionViewer = ({ cards, isLoading, organizations, setFilterValue }: Props) => {
   const [searchValue, setSearchValue] = useState("");
