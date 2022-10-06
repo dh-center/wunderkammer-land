@@ -1,0 +1,33 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    padding: 20px;
+
+    width: calc(100% - var(--navbar-width));
+}
+
+@media (max-width: 980px) {
+    .page {
+        padding: 10px;
+        padding-top: calc(10px + var(--navbar-width));
+        width: 100%;
+    }
+}
+
+.page .navigation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.page .navigation .small-logo {
+    width: 50px;
+}
+
+.page .content-centered {
+    width: 100%;
+    max-width: 800px;
+    align-self: center;
+}
