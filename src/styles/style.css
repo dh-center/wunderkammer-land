@@ -1530,7 +1530,6 @@ p.team_person{
 /* Collection detailed ↓ */
 
 .collection-detailed__wrap {
-    padding: 1rem;
 }
 
 .collection-detailed__search {
@@ -1632,4 +1631,32 @@ p.team_person{
 .ynmap__wrap {
     width: 100%;
     height: 100vh;
+}
+
+.interactive-map__wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.interactive-map_navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    max-height: 5rem;
+    padding: 1rem;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    background: white;
+}
+
+.interactive-map_logo-wrap {
+    flex: 0 0 14%;
+}
+
+.interactive-map_navbar .section_logo {
+    width: 27.5%;
+    height: 27.5%;
+    min-width: 27.5%;
+    min-height: 2.25rem;
 }
