@@ -8,7 +8,8 @@ const getPatchedCards = (cardsList: CardData[], propertiesList: Property[]) => {
     ...card,
     propertiesList: card.propertiesList.map((cardProperty) => ({
       ...cardProperty,
-      propertyName: propertiesList.find(({ propertyId }) => propertyId === cardProperty.propertyId)?.name || ""
+      propertyName: propertiesList.find(({ propertyId }) => propertyId === cardProperty.propertyId)?.name || "",
+      propertyDataType: propertiesList.find(({ propertyId }) => propertyId === cardProperty.propertyId)?.dataType.name || ""
     }))
   }));
   const patchedWithoutMS = patched.filter((item) => item.organizationId !== 1);

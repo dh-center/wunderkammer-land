@@ -3,22 +3,15 @@ import { ExpandableMenuElement, MenuElement } from "./Menu";
 
 type MenuItemProps = {
   item: MenuElement | ExpandableMenuElement;
-  setIsMenuCabinetOpen: (value: boolean) => void;
   pathname: string;
   isNavbarOpen: boolean;
   menuType: "main" | "footer";
 };
 
-const MenuItem = ({ item, setIsMenuCabinetOpen, pathname, isNavbarOpen, menuType }: MenuItemProps) => {
+const MenuItem = ({ item, pathname, isNavbarOpen, menuType }: MenuItemProps) => {
   return (
     <>
-      <Link
-        to={item.route}
-        className="menu_block_contaner"
-        onClick={() => {
-          setIsMenuCabinetOpen(false);
-        }}
-      >
+      <Link to={item.route} className="menu_block_contaner">
         <div className={`menu-bullet ${item.isSelected(pathname) && isNavbarOpen ? "menu-bullet-active" : ""}`}>
           {menuType === "main" ? (
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">

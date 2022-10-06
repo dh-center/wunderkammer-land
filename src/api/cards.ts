@@ -9,11 +9,12 @@ export type Property = {
   };
 };
 
-type CardProperty = {
+export type CardProperty = {
   id: number;
   data: string;
   propertyId: number;
-  propertyName?: string;
+  propertyName: string;
+  propertyDataType: string;
 };
 
 export type CardData = {
