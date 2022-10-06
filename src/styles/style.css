@@ -1566,7 +1566,7 @@ p.team_person{
     padding: 2rem 0;
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(4, 400px);
+    grid-template-columns: repeat( auto-fit, minmax(350px, 1fr) );
     grid-gap: 1rem;
     width: 90%;
 }

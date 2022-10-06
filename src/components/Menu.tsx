@@ -33,7 +33,6 @@ export class ExpandableMenuElement extends MenuElement {
 
 const Menu = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
-  const [, setIsMenuCabinetOpen] = useState(false);
   const location = useLocation();
   const pathname = location.pathname.slice(1);
   useEffect(() => setIsNavbarOpen(false), [location]);
@@ -97,14 +96,7 @@ const Menu = () => {
         <div className="menu_container menu-top_container">
           <ul className="menu-top flex column content--start items--start">
             {mainMenu.map((item, index) => (
-              <MenuItem
-                key={index}
-                item={item}
-                setIsMenuCabinetOpen={setIsMenuCabinetOpen}
-                pathname={pathname}
-                isNavbarOpen={isNavbarOpen}
-                menuType="main"
-              />
+              <MenuItem key={index} item={item} pathname={pathname} isNavbarOpen={isNavbarOpen} menuType="main" />
             ))}
           </ul>
         </div>
@@ -112,14 +104,7 @@ const Menu = () => {
         <div className="menu_container menu-bottom_container">
           <ul className="menu-bottom flex column content--start items--start">
             {footerMenu.map((item, index) => (
-              <MenuItem
-                key={index}
-                item={item}
-                setIsMenuCabinetOpen={setIsMenuCabinetOpen}
-                pathname={pathname}
-                isNavbarOpen={isNavbarOpen}
-                menuType="footer"
-              />
+              <MenuItem key={index} item={item} pathname={pathname} isNavbarOpen={isNavbarOpen} menuType="footer" />
             ))}
           </ul>
         </div>
