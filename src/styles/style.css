@@ -1530,7 +1530,6 @@ p.team_person{
 /* Collection detailed ↓ */
 
 .collection-detailed__wrap {
-    padding: 1rem;
 }
 
 .collection-detailed__search {
@@ -1630,6 +1629,5 @@ p.team_person{
 }
 
 .ynmap__wrap {
-    width: 100%;
-    height: 100vh;
+    height: 650px;
 }
