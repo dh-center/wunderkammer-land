@@ -1,6 +1,6 @@
 import PageLayout from "../components/PageLayout";
 import { useParams } from "react-router-dom";
-import { ARTICLES } from "../utils/constants";
+import { ARTICLES } from "../utils/articlesMock";
 
 const SingleArticle = () => {
   const { id } = useParams();
