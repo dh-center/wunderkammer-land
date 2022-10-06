@@ -1,4 +1,4 @@
-export const COLLECTION_LIST_URL = "/collection_detailed";
+export const COLLECTION_LIST_URL = "/collection/list";
 export const INTERACTIVE_MAP_URL = "/map/peter_travels";
 export const TEAM_URL = "team";
 export const MAP_URL = "map";

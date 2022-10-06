@@ -1565,9 +1565,9 @@ p.team_person{
     padding: 2rem 0;
     margin: 0;
     display: grid;
-    grid-template-columns: repeat( auto-fit, minmax(350px, 1fr) );
-    grid-gap: 1rem;
-    width: 90%;
+    grid-template-columns: repeat( auto-fit, minmax(290px, 1fr) );
+    grid-gap: 10px;
+    width: 100%;
 }
 
 .collection-detailed__card-item {
@@ -1586,6 +1586,10 @@ p.team_person{
 .collection-detailed__properties-list-item {
     margin-bottom: 0.5rem;
     word-wrap: break-word;
+}
+
+.collection-detailed__card-item * {
+    font-size: 0.9em;
 }
 
 /* Collection detailed ↑ */
