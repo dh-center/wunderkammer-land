@@ -1,10 +1,6 @@
 import { useState } from "react";
-
 import { Link } from "react-router-dom";
-import Farfor from "../assets/images/articles_farfor.jpg";
-import Grafin from "../assets/images/articles_grafin.jpg";
-import Ikona from "../assets/images/articles_ikona.jpg";
-import Petr from "../assets/images/articles_petr.jpg";
+import { ARTICLES } from "../utils/constants";
 
 const Articles = () => {
   const [imageUrl, setImageUrl] = useState<string>("");
@@ -124,58 +120,19 @@ const Articles = () => {
       <div className="main_section right flex column content--start items--start">
         <h1 className="section_title blue">Статьи</h1>
         <div className="section_content articles_container">
-          <div className="articles_block">
-            <Link
-              className="articles_link"
-              to="/single-article/1"
-              onMouseEnter={() => setImageUrl(Petr)}
-              onMouseLeave={() => setImageUrl("")}
-            >
-              <div className="articles_title">
-                Невозможно было не узнать его: всякого поражало врожденное ему величие. <br />
-                Живописные портреты Петра Великого
-              </div>
-              <div className="articles_author">Автор: Оксана Каяндер</div>
-            </Link>
-          </div>
-          <div className="articles_block">
-            <Link
-              className="articles_link"
-              to="/single-article/2"
-              onMouseEnter={() => setImageUrl(Ikona)}
-              onMouseLeave={() => setImageUrl("")}
-            >
-              <div className="articles_title">Петровская иконография в западно-европейских изданиях XVIII–XIX веков</div>
-              <div className="articles_author">Автор: Марина Трубановская</div>
-            </Link>
-          </div>
-          <div className="articles_block">
-            <Link
-              className="articles_link"
-              to="/single-article/3"
-              onMouseEnter={() => setImageUrl(Grafin)}
-              onMouseLeave={() => setImageUrl("")}
-            >
-              <div className="articles_title">
-                Приказал подать cамый большой бокал, какой только могли найти. Три этюда о кубке
-              </div>
-              <div className="articles_author">Автор: Марина Брюханова</div>
-            </Link>
-          </div>
-          <div className="articles_block">
-            <Link
-              className="articles_link"
-              to="/single-article/4"
-              onMouseEnter={() => setImageUrl(Farfor)}
-              onMouseLeave={() => setImageUrl("")}
-            >
-              <div className="articles_title">
-                И памяти твоей Великий Петр верна твоя Россия. <br />
-                Петровский Петергоф в произведениях Императорского фарфорового завода первой четверти XIX века
-              </div>
-              <div className="articles_author">Автор: Тамара Носович</div>
-            </Link>
-          </div>
+          {ARTICLES.map((article) => (
+            <div className="articles_block">
+              <Link
+                className="articles_link"
+                to={`/single-article/${article.slug}`}
+                onMouseEnter={() => setImageUrl(article.preview)}
+                onMouseLeave={() => setImageUrl("")}
+              >
+                <div className="articles_title">{article.title}</div>
+                <div className="articles_author">Автор: {article.author}</div>
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
     </main>
