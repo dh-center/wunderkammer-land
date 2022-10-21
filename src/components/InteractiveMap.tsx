@@ -28,7 +28,7 @@ const getCoordinatesFromCardData = (cardProps: CardProps) => {
 const getAnnotationFromCardData = (props: CardProps) => {
   const annotationProperty = props.find((item) => item.propertyId === ANNOTATION_PROPERTY_ID);
   if (annotationProperty) {
-    return JSON.parse(annotationProperty.data);
+    return annotationProperty.data;
   }
 
   return "-";
