@@ -4,6 +4,7 @@ import GeoPropertyParser from "./GeoPropertyParser";
 import DatePropertyParser from "./DatePropertyParser";
 import TextPropertyParser from "./TextPropertyParser";
 import RichTextPropertyParser from "./RichTextPropertyParser";
+import MeasurementPropertyParser from "./MeasurementPropertyParser";
 
 export type PropertiesParserProps = {
   property: CardProperty;
@@ -20,6 +21,8 @@ const PropertiesParser = ({ property }: PropertiesParserProps) => {
       return <DatePropertyParser property={property} />;
     case DATA_TYPES.GEO_POINT:
       return <GeoPropertyParser property={property} />;
+    case DATA_TYPES.MEASURMENT:
+      return <MeasurementPropertyParser property={property} />;
     case DATA_TYPES.MEDIA:
       return <div>в разработке</div>;
     default:

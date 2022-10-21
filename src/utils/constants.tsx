@@ -3,7 +3,8 @@ export const DATA_TYPES = {
   RICH_TEXT: "RICH_TEXT",
   JULIAN_DATE: "JULIAN_DATE",
   MEDIA: "MEDIA",
-  TEXT: "TEXT"
+  TEXT: "TEXT",
+  MEASURMENT: "MEASURMENT"
 };
 
 export const CALENDAR_TYPE = {
@@ -36,5 +37,6 @@ export const PROPERTIES_NAMES: { [key: string]: string } = {
   refutation: "Опровержение",
   socialNetworks: "Социальные сети",
   storage: "Место хранения",
-  url: "URL"
+  url: "URL",
+  size: "Размеры"
 };
