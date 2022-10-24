@@ -23,8 +23,8 @@ const PropertiesParser = ({ property }: PropertiesParserProps) => {
       return <GeoPropertyParser property={property} />;
     case DATA_TYPES.MEASURMENT:
       return <MeasurementPropertyParser property={property} />;
-    case DATA_TYPES.MEDIA:
-      return <div>в разработке</div>;
+    case DATA_TYPES.FILE:
+      return <div>Свойства типа FILE в разработке</div>;
     default:
       return <span>Неизвестное свойство</span>;
   }
