@@ -15,7 +15,10 @@ const Articles = () => {
           </Link>
         </div>
 
-        <div className="section_image_wrapper">{imageUrl && <img src={imageUrl} alt="" className="fade_show" />}</div>
+        {/* <div className="section_image_wrapper">{imageUrl && <img src={imageUrl} alt="" className="fade_show" />}</div> */}
+        <div className="section_image_wrapper">
+          <img src={imageUrl} alt="" className="fade_show" />
+        </div>
       </div>
 
       <div className="main_section right flex column content--start items--start">
