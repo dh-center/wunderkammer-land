@@ -1645,3 +1645,14 @@ p.team_person{
 .ynmap__wrap {
     height: 650px;
 }
+
+@media (max-width: 800px) {
+    .wp-block-image {
+        margin: 0.5rem;
+    }
+}
+
+.wp-block-image img {
+    width: 100%;
+    height: auto;
+}
