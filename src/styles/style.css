@@ -965,12 +965,16 @@ body{
 .main_section{
     flex: 0 0 50%;
     min-height: 100vh;
+    align-self: stretch;
+    max-width: 50%;
 }
 @media screen and (max-width: 980px) {
     .main_section{
         flex: 0 0 auto;
         width: 100%;
         min-height: unset;
+        max-width: 100%;
+        
     }
 }
 
@@ -1344,10 +1348,15 @@ h1.section_title{
 .section_image_wrapper{
     font-size: var(--font-size-62);
     padding-top: 2.7em;
+    position: sticky;
+    top: 0;
 }
 
 .section_image_wrapper img{
-    width: 67%;
+    max-height: 720px;
+    max-width: 100%;
+    width: 100%;
+    object-fit: contain;
 }
 
 .section_content.articles_container{
@@ -1635,4 +1644,15 @@ p.team_person{
 
 .ynmap__wrap {
     height: 650px;
+}
+
+@media (max-width: 800px) {
+    .wp-block-image {
+        margin: 0.5rem;
+    }
+}
+
+.wp-block-image img {
+    width: 100%;
+    height: auto;
 }

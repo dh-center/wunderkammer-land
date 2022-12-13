@@ -49,7 +49,7 @@ export const CardsAPI = {
     return data.results;
   },
   async getCardsList(params?: { offset: number; limit: number }) {
-    const { data } = await API.get<CardsResponse>("cards/noAuth", { params });
+    const { data } = await API.get<CardsResponse>("cards", { params });
     return data.results;
   },
   async getCardsByOrganizationId(orgId: number, params?: { offset: number; limit: number }) {
